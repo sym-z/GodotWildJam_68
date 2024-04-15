@@ -17,6 +17,8 @@ func _integrate_forces():
 		#bullet.linear_velocity = Vector2.RIGHT * projectile_speed
 	pass
 func _on_shoot():
+	# TODO: FLIP PROJECTILE SPRITE IF FACING OTHER DIRECTIONS
+	# TODO: LIFESPAN
 	var bullet = bullet_scene.instantiate()
 	var dir : Vector2
 	add_child(bullet)
