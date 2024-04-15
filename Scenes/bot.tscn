@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4geafs820qx5"]
+
+[ext_resource type="Script" path="res://Scripts/bot.gd" id="1_7eqj4"]
+[ext_resource type="Texture2D" uid="uid://it6c4x38sr5d" path="res://Sprites/bot animations/bot_beta1.png" id="1_rn6sp"]
+[ext_resource type="Texture2D" uid="uid://80kwxv7apk3q" path="res://Sprites/bot animations/bot_beta2.png" id="2_7cfiu"]
+[ext_resource type="Texture2D" uid="uid://d1b5hwtywkhj3" path="res://Sprites/bot animations/bot_beta_hurt1.png" id="4_kkoc1"]
+[ext_resource type="Texture2D" uid="uid://debymdpldeb62" path="res://Sprites/bot animations/bot_beta_hurt2.png" id="5_2ojxt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3mu8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rn6sp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7cfiu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kkoc1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2ojxt")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awwdp"]
+size = Vector2(14, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jfbx"]
+size = Vector2(14, 10)
+
+[node name="Bot" type="CharacterBody2D"]
+script = ExtResource("1_7eqj4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3mu8c")
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D"]
+wait_time = 0.5
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_awwdp")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_0jfbx")
+
+[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_2d_animation_changed"]
+[connection signal="timeout" from="AnimatedSprite2D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_entered"]

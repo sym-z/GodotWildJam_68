@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://7dsbxi78spi3"]
+[gd_scene load_steps=6 format=3 uid="uid://7dsbxi78spi3"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_nwdro"]
 [ext_resource type="Texture2D" uid="uid://bjdhr2is4k0bt" path="res://Sprites/screentest.png" id="2_fidii"]
 [ext_resource type="PackedScene" uid="uid://dsuh08esdopj" path="res://Scenes/beta_tm.tscn" id="3_4o373"]
 [ext_resource type="PackedScene" uid="uid://gb07ukqnwgtn" path="res://Scenes/iron_shell.tscn" id="4_djyh1"]
+[ext_resource type="PackedScene" uid="uid://b4geafs820qx5" path="res://Scenes/bot.tscn" id="5_44mmy"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_nwdro")
@@ -13,9 +14,13 @@ texture = ExtResource("2_fidii")
 centered = false
 
 [node name="Beta_TM" parent="." instance=ExtResource("3_4o373")]
+visible = false
 layer_0/tile_data = PackedInt32Array(589824, 3, 2, 589825, 65539, 2, 589826, 65539, 2, 589827, 65539, 2, 589828, 65539, 2, 589829, 65539, 2, 589830, 65539, 2, 589831, 65539, 2, 589832, 65539, 2, 65545, 131075, 1, 131081, 131075, 1, 196617, 131075, 1, 262153, 131075, 1, 327689, 131075, 1, 393225, 131075, 1, 458761, 131075, 1, 524297, 131075, 1, 65536, 3, 1, 131072, 3, 1, 196608, 3, 1, 262144, 3, 1, 327680, 3, 1, 393216, 3, 1, 458752, 3, 1, 524288, 3, 1, 1, 65539, 0, 2, 65539, 0, 3, 65539, 0, 4, 65539, 0, 5, 65539, 0, 6, 65539, 0, 7, 65539, 0, 8, 65539, 0, 9, 131075, 0, 589833, 131075, 2, 0, 3, 0)
 
 [node name="Iron_Shell" parent="." instance=ExtResource("4_djyh1")]
 position = Vector2(86, 161)
+
+[node name="Bot" parent="." instance=ExtResource("5_44mmy")]
+position = Vector2(242, 167)
 
 [connection signal="shoot" from="Iron_Shell" to="." method="_on_shoot"]

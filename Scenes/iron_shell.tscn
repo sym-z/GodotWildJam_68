@@ -1,13 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://gb07ukqnwgtn"]
+[gd_scene load_steps=8 format=3 uid="uid://gb07ukqnwgtn"]
 
-[ext_resource type="Texture2D" uid="uid://de7phia2634ps" path="res://Sprites/turt.png" id="1_ijqyi"]
 [ext_resource type="Script" path="res://Scripts/iron_shell.gd" id="1_tqp1e"]
+[ext_resource type="Texture2D" uid="uid://duog7m3qtvpb2" path="res://Sprites/turt_anims/turt_idle1.png" id="2_cxbab"]
+[ext_resource type="Texture2D" uid="uid://b57v4qno4rh86" path="res://Sprites/turt_anims/turt_idle2.png" id="3_vf0c2"]
+[ext_resource type="Texture2D" uid="uid://b34dap5du4y71" path="res://Sprites/turt_anims/turt_idle3.png" id="4_qoocg"]
+[ext_resource type="Texture2D" uid="uid://b3ro3wyoxidj5" path="res://Sprites/turt_anims/turt_idle4.png" id="5_1yrvg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d5ub8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ijqyi")
+"texture": ExtResource("2_cxbab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vf0c2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qoocg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1yrvg")
 }],
 "loop": true,
 "name": &"default",

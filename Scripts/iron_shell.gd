@@ -1,5 +1,17 @@
 # TODO: How do I change a template for a script?
 
+# TODO: ANIMATIONS
+	# Shoot
+	# Hurt
+	# Look Up
+	# Look Down
+	# Death
+	# Walk Up
+	# Walk Down
+	# Walk Left
+	# Walk Right
+	# Metal Pickup
+
 extends CharacterBody2D
 
 
@@ -16,6 +28,9 @@ signal shoot
 @export var projectile_speed = 500.0
 @export var walk_speed  = 110.0
 @export var facing = dir.RIGHT;
+
+func _ready():
+	$Sprite.play()
 
 func _physics_process(delta):
 	print(facing)
