@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://gb07ukqnwgtn"]
+
+[ext_resource type="Texture2D" uid="uid://de7phia2634ps" path="res://Sprites/turt.png" id="1_ijqyi"]
+[ext_resource type="Script" path="res://Scripts/iron_shell.gd" id="1_tqp1e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d5ub8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ijqyi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hxy5x"]
+radius = 7.0
+
+[node name="Iron_Shell" type="CharacterBody2D"]
+script = ExtResource("1_tqp1e")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d5ub8")
+
+[node name="Collision Shape" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_hxy5x")
+
+[node name="RayCast2D" type="RayCast2D" parent="Collision Shape"]
+target_position = Vector2(32, 0)

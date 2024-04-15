@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsuh08esdopj"]
+
+[ext_resource type="Texture2D" uid="uid://ct3wce1u6idkv" path="res://Sprites/betatileset.png" id="1_b7634"]
+[ext_resource type="Texture2D" uid="uid://713y7lbii8vd" path="res://Sprites/betadoors.png" id="2_t3wig"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ediqw"]
+resource_name = "Doors"
+texture = ExtResource("2_t3wig")
+texture_region_size = Vector2i(32, 24)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t2dtx"]
+resource_name = "Walls"
+texture = ExtResource("1_b7634")
+texture_region_size = Vector2i(32, 24)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_516de"]
+tile_size = Vector2i(32, 24)
+sources/2 = SubResource("TileSetAtlasSource_ediqw")
+sources/3 = SubResource("TileSetAtlasSource_t2dtx")
+
+[node name="Beta_TM" type="TileMap"]
+tile_set = SubResource("TileSet_516de")
+format = 2
