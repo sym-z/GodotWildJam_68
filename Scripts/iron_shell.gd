@@ -12,6 +12,13 @@
 	# Walk Right
 	# Metal Pickup
 
+# TODO: USE THESE
+	#tile_pos = tilemap.local_to_map(position)
+	#world_pos = tilemap.map_to_local(tile_pos)
+	#atlas_pos = tilemap.get_cell_atlas_coords(-1,tile_pos)
+	#tile_index = atlas_pos.y * ROW_SIZE + atlas_pos.x
+	#tile_obj = tile_array[tile_index]
+
 extends CharacterBody2D
 
 
@@ -26,18 +33,17 @@ signal shoot
 
 @export var push_force  = 1000
 @export var projectile_speed = 500.0
-@export var walk_speed  = 110.0
+@export var walk_speed  = 6000.0
 @export var facing = dir.RIGHT;
 
 func _ready():
 	$Sprite.play()
 
 func _physics_process(delta):
-	print(facing)
 	# Grab input from user
 	direction = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
 	# Move the character
-	movement_input()
+	movement_input(delta)
 	# Turn Sprite, change aiming direction
 	look()
 	# Push RigidBody2D's
@@ -78,10 +84,10 @@ func look():
 	else:
 		pass
 		
-func movement_input():
+func movement_input(delta):
 	# Move the character
 	if direction:
-		velocity = direction * walk_speed
+		velocity = direction * walk_speed * delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed)
 		velocity.y = move_toward(velocity.y, 0, walk_speed)

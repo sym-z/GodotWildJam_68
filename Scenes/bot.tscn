@@ -38,6 +38,8 @@ size = Vector2(14, 10)
 size = Vector2(14, 10)
 
 [node name="Bot" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_7eqj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -58,6 +60,12 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_0jfbx")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Node2D"]
+
+[node name="Marker2D2" type="Marker2D" parent="Node2D"]
 
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_2d_animation_changed"]
 [connection signal="timeout" from="AnimatedSprite2D/Timer" to="." method="_on_timer_timeout"]

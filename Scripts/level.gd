@@ -32,5 +32,7 @@ func _on_shoot():
 			dir = Vector2.UP
 		8:
 			dir = Vector2.DOWN
+			
+	dir += $Iron_Shell.velocity.normalized() 
 	bullet.linear_velocity = dir * projectile_speed
 	screen_bullets.append(bullet)

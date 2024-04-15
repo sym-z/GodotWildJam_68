@@ -8,6 +8,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$AnimatedSprite2D.flip_h = true if (linear_velocity.x <= 0) else false
 	pass
 
 func hurt():
