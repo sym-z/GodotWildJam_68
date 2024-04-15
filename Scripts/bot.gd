@@ -3,6 +3,7 @@ extends CharacterBody2D
 var bullet = preload("res://Scenes/projectile.tscn")
 const SPEED = 10.0
 @export var player : CharacterBody2D
+
 # To handle state machine
 enum state {PATROL, TARGET, ATTACK, HURT, DEATH}
 

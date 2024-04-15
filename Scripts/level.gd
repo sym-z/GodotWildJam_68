@@ -4,7 +4,10 @@ var screen_bullets = []
 var projectile_speed : float = 750.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	var enemies = get_children()
+	for x in enemies:
+		if x.has_method("damage"):
+			x.player = $Iron_Shell;
 	pass # Replace with function body.
 
 
