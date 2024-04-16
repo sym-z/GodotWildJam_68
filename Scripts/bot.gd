@@ -39,18 +39,17 @@ func _physics_process(delta):
 		follow(delta)
 		move_and_slide()
 
-<<<<<<< HEAD
 
 func _on_hurtbox_entered(body):
 	if body.has_method("hurt"):
 		body.hurt()
-=======
+		damage(body)
+
 func damage(body):
 	if !body.landed:
->>>>>>> f7b0420a4b7f25c0048f30b6b48b715f76e7dd2a
 		var bounce_dir  = Vector2(body.position - position).normalized()
 		print(bounce_dir)
-		velocity += bounce_dir *1000 
+		velocity += bounce_dir *500
 		move_and_slide()
 		health -= 1
 		status = state.DEATH if (health <= 0) else state.HURT
@@ -58,9 +57,9 @@ func damage(body):
 		$AnimatedSprite2D.stop()
 		$AnimatedSprite2D.play()
 
-func _on_hurtbox_entered(body):
-	if body.has_method("hurt"):
-		damage(body);
+#func _on_hurtbox_entered(body):
+	#if body.has_method("hurt"):
+		#damage(body);
 
 func _on_2d_animation_changed():
 	if $AnimatedSprite2D.animation == "hurt":

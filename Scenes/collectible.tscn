@@ -74,6 +74,6 @@ shape = SubResource("RectangleShape2D_jpdb0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vuvt0")
 animation = &"coal"
-frame_progress = 0.256934
+frame_progress = 0.564396
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
