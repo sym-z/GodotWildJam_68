@@ -31,3 +31,9 @@ func _on_area_2d_body_entered(body):
 	elif body.has_method("wall"):
 		hurt()
 
+
+
+func _on_timer_timeout():
+	# If for some reason the bullet exists for longer than 5 seconds, delete it.
+	queue_free();
+	pass # Replace with function body.

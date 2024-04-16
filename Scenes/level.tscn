@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://7dsbxi78spi3"]
+[gd_scene load_steps=14 format=3 uid="uid://7dsbxi78spi3"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_nwdro"]
 [ext_resource type="Texture2D" uid="uid://bjdhr2is4k0bt" path="res://Sprites/screentest.png" id="2_fidii"]
@@ -6,6 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://c7pt3gn12013l" path="res://Scenes/default_tm.tscn" id="3_84jog"]
 [ext_resource type="PackedScene" uid="uid://gb07ukqnwgtn" path="res://Scenes/iron_shell.tscn" id="4_djyh1"]
 [ext_resource type="PackedScene" uid="uid://b4geafs820qx5" path="res://Scenes/bot.tscn" id="5_44mmy"]
+[ext_resource type="PackedScene" uid="uid://dob61pdp1lg86" path="res://Scenes/number.tscn" id="7_g5oj6"]
+[ext_resource type="Texture2D" uid="uid://inv021yinp84" path="res://Sprites/hud_bg_beta.png" id="7_qm8kc"]
+[ext_resource type="Texture2D" uid="uid://dkijiqsnmgm6j" path="res://Sprites/coal_sprites/coal1.png" id="9_fyl61"]
+[ext_resource type="Texture2D" uid="uid://bqr30huxesqtf" path="res://Sprites/gold_sprite/gold1.png" id="10_56rqp"]
+[ext_resource type="Texture2D" uid="uid://dfhs4nq555f84" path="res://Sprites/iron_sprite/iron1.png" id="11_wyb1o"]
+[ext_resource type="Texture2D" uid="uid://3ah2tg80knb8" path="res://Sprites/copper_frames/copper1.png" id="12_fd4os"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uveqc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qm8kc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_nwdro")
@@ -27,5 +44,61 @@ position = Vector2(86, 161)
 
 [node name="Bot" parent="." instance=ExtResource("5_44mmy")]
 position = Vector2(231, 162)
+
+[node name="Hud" type="Node" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hud"]
+position = Vector2(160, 264)
+sprite_frames = SubResource("SpriteFrames_uveqc")
+
+[node name="Numbers" type="Node" parent="Hud"]
+
+[node name="Coal Count" type="Node" parent="Hud/Numbers"]
+
+[node name="Coal Ten" parent="Hud/Numbers/Coal Count" instance=ExtResource("7_g5oj6")]
+position = Vector2(8, 252)
+
+[node name="Coal One" parent="Hud/Numbers/Coal Count" instance=ExtResource("7_g5oj6")]
+position = Vector2(19, 252)
+
+[node name="Icon" type="Sprite2D" parent="Hud/Numbers/Coal Count"]
+position = Vector2(34, 253)
+texture = ExtResource("9_fyl61")
+
+[node name="Gold Count" type="Node" parent="Hud/Numbers"]
+
+[node name="Gold Ten" parent="Hud/Numbers/Gold Count" instance=ExtResource("7_g5oj6")]
+position = Vector2(8, 275)
+
+[node name="Gold One" parent="Hud/Numbers/Gold Count" instance=ExtResource("7_g5oj6")]
+position = Vector2(19, 275)
+
+[node name="Icon" type="Sprite2D" parent="Hud/Numbers/Gold Count"]
+position = Vector2(34, 276)
+texture = ExtResource("10_56rqp")
+
+[node name="Iron Count" type="Node" parent="Hud/Numbers"]
+
+[node name="Iron Ten" parent="Hud/Numbers/Iron Count" instance=ExtResource("7_g5oj6")]
+position = Vector2(302, 252)
+
+[node name="Iron One" parent="Hud/Numbers/Iron Count" instance=ExtResource("7_g5oj6")]
+position = Vector2(313, 252)
+
+[node name="Icon" type="Sprite2D" parent="Hud/Numbers/Iron Count"]
+position = Vector2(285, 253)
+texture = ExtResource("11_wyb1o")
+
+[node name="Copper Count" type="Node" parent="Hud/Numbers"]
+
+[node name="Copper Ten" parent="Hud/Numbers/Copper Count" instance=ExtResource("7_g5oj6")]
+position = Vector2(302, 275)
+
+[node name="Copper One" parent="Hud/Numbers/Copper Count" instance=ExtResource("7_g5oj6")]
+position = Vector2(313, 275)
+
+[node name="Icon" type="Sprite2D" parent="Hud/Numbers/Copper Count"]
+position = Vector2(285, 275)
+texture = ExtResource("12_fd4os")
 
 [connection signal="shoot" from="Iron_Shell" to="." method="_on_shoot"]

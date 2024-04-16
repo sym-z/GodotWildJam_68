@@ -1,0 +1,55 @@
+[gd_scene load_steps=12 format=3 uid="uid://dob61pdp1lg86"]
+
+[ext_resource type="Texture2D" uid="uid://15b1duvc56no" path="res://Sprites/beta_number_anims/beta_numbers1.png" id="1_7vbke"]
+[ext_resource type="Texture2D" uid="uid://kswof5ml0m2x" path="res://Sprites/beta_number_anims/beta_numbers2.png" id="2_jp68f"]
+[ext_resource type="Texture2D" uid="uid://b02jhaiqbk1bc" path="res://Sprites/beta_number_anims/beta_numbers3.png" id="3_agxfc"]
+[ext_resource type="Texture2D" uid="uid://c567vd4j84ga2" path="res://Sprites/beta_number_anims/beta_numbers4.png" id="4_p33lh"]
+[ext_resource type="Texture2D" uid="uid://4c1g3mo5mgek" path="res://Sprites/beta_number_anims/beta_numbers5.png" id="5_yhu6e"]
+[ext_resource type="Texture2D" uid="uid://cljjs5i70tqep" path="res://Sprites/beta_number_anims/beta_numbers6.png" id="6_7s7nd"]
+[ext_resource type="Texture2D" uid="uid://1pjpfpxewymi" path="res://Sprites/beta_number_anims/beta_numbers7.png" id="7_xi8qb"]
+[ext_resource type="Texture2D" uid="uid://dy5q1pmg2ekeu" path="res://Sprites/beta_number_anims/beta_numbers8.png" id="8_0vv2c"]
+[ext_resource type="Texture2D" uid="uid://cjwwdwmb5h4k" path="res://Sprites/beta_number_anims/beta_numbers9.png" id="9_0jb30"]
+[ext_resource type="Texture2D" uid="uid://dmqd3uwarnv2n" path="res://Sprites/beta_number_anims/beta_numbers10.png" id="10_fu7c2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g10ha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7vbke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jp68f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_agxfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_p33lh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yhu6e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7s7nd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xi8qb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0vv2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0jb30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_fu7c2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Number" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_g10ha")
+frame = 7
+frame_progress = 0.43528
