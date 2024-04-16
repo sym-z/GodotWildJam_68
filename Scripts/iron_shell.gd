@@ -92,5 +92,8 @@ func movement_input(delta):
 		velocity.x = move_toward(velocity.x, 0, walk_speed)
 		velocity.y = move_toward(velocity.y, 0, walk_speed)
 
+func pickup(type):
+	if type == "COAL":
+		pass
 func fire():
 	emit_signal("shoot")

@@ -1,10 +1,10 @@
 extends Node2D
 var bullet_scene = preload("res://Scenes/projectile.tscn")
 var screen_bullets = []
-var projectile_speed : float = 750.0
+var projectile_speed : float = 200.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
+	
 	pass # Replace with function body.
 
 
@@ -34,5 +34,6 @@ func _on_shoot():
 			dir = Vector2.DOWN
 			
 	dir += $Iron_Shell.velocity.normalized() 
+	dir.x *= 2
 	bullet.linear_velocity = dir * projectile_speed
 	screen_bullets.append(bullet)

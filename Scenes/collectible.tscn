@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://c8n71dy74tpef"]
+
+[ext_resource type="Script" path="res://Scripts/collectible.gd" id="1_gpwsr"]
+[ext_resource type="Texture2D" uid="uid://dkijiqsnmgm6j" path="res://Sprites/coal_sprites/coal1.png" id="2_t2fx4"]
+[ext_resource type="Texture2D" uid="uid://fw3eleivffem" path="res://Sprites/coal_sprites/coal2.png" id="3_7v4la"]
+[ext_resource type="Texture2D" uid="uid://3ah2tg80knb8" path="res://Sprites/copper_frames/copper1.png" id="4_nd28j"]
+[ext_resource type="Texture2D" uid="uid://dtisr4gdgjfuw" path="res://Sprites/copper_frames/copper2.png" id="5_hde1t"]
+[ext_resource type="Texture2D" uid="uid://bqr30huxesqtf" path="res://Sprites/gold_sprite/gold1.png" id="6_wgqk3"]
+[ext_resource type="Texture2D" uid="uid://by3v4shl5cvpj" path="res://Sprites/gold_sprite/gold2.png" id="7_aecfo"]
+[ext_resource type="Texture2D" uid="uid://dfhs4nq555f84" path="res://Sprites/iron_sprite/iron1.png" id="8_fhsxr"]
+[ext_resource type="Texture2D" uid="uid://bqj4y4bs1se22" path="res://Sprites/iron_sprite/iron2.png" id="9_xegao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpdb0"]
+size = Vector2(8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vuvt0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t2fx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7v4la")
+}],
+"loop": true,
+"name": &"coal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_nd28j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hde1t")
+}],
+"loop": true,
+"name": &"copper",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wgqk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_aecfo")
+}],
+"loop": true,
+"name": &"gold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_fhsxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xegao")
+}],
+"loop": true,
+"name": &"iron",
+"speed": 5.0
+}]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_gpwsr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jpdb0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vuvt0")
+animation = &"coal"
+frame_progress = 0.594681
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -41,6 +41,7 @@ func _physics_process(delta):
 
 func _on_hurtbox_entered(body):
 	if body.has_method("hurt"):
+		body.hurt()
 		var bounce_dir  = Vector2(body.position - position).normalized()
 		print(bounce_dir)
 		velocity += bounce_dir *1000 
