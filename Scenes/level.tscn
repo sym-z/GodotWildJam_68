@@ -20,8 +20,13 @@ layer_0/tile_data = PackedInt32Array(589824, 3, 2, 589825, 65539, 2, 589826, 655
 [node name="Iron_Shell" parent="." instance=ExtResource("4_djyh1")]
 position = Vector2(86, 161)
 
+<<<<<<< HEAD
 [node name="Bot" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_44mmy")]
 position = Vector2(229, 162)
 player = NodePath("../Iron_Shell")
+=======
+[node name="Bot" parent="." instance=ExtResource("5_44mmy")]
+position = Vector2(229, 151)
+>>>>>>> f7b0420a4b7f25c0048f30b6b48b715f76e7dd2a
 
 [connection signal="shoot" from="Iron_Shell" to="." method="_on_shoot"]
