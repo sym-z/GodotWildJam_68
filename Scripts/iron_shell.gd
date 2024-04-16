@@ -36,6 +36,12 @@ signal shoot
 @export var walk_speed  = 6000.0
 @export var facing = dir.RIGHT;
 
+var gold_count : int = 0 
+var coal_count : int = 0
+var iron_count : int = 0
+var copper_count : int = 0
+
+
 func _ready():
 	$Sprite.play()
 
@@ -64,15 +70,18 @@ func push():
 func look():
 	# Determine what direction we are facing
 	if direction:
+		if !$Sprite.is_playing():
+			$Sprite.play()
 		# If we are moving up, don't bother flipping the sprite.
 		# 1. Set the correct frame
 		# 2. Set the facing variable
 		if velocity.y: #Works even if it is negative
 			# TODO: ADD IN CORRECT FRAME NUMBER
-			$Sprite.frame = 0 if (velocity.y > 0) else 0
+			$Sprite.animation = "walk_down" if (velocity.y > 0) else "walk_up"
 			facing = dir.DOWN if (velocity.y > 0) else dir.UP
 		# Horizontal Movement
 		elif velocity.x:
+			$Sprite.animation = "walk_h"
 			$Sprite.flip_h = true if (velocity.x < 0) else false
 			facing = dir.LEFT if (velocity.x < 0) else dir.RIGHT
 		# Sanity Check
@@ -82,6 +91,10 @@ func look():
 			pass
 	# TODO: Idle Animation? Idle State?
 	else:
+		$Sprite.pause()
+		#if facing == dir.UP || facing == dir.down:
+			#
+		#$Sprite.animation = "default"
 		pass
 		
 func movement_input(delta):
@@ -95,5 +108,29 @@ func movement_input(delta):
 func pickup(type):
 	if type == "COAL":
 		pass
+	match type:
+		"COAL":
+			print("coal get!");
+			coal_count += 1
+			print(coal_count);
+			pass
+		"GOLD":
+			print("gold get!");
+			gold_count += 1
+			print(gold_count);
+			pass
+		"IRON":
+			print("iron get!");
+			iron_count += 1
+			print(iron_count);
+			pass
+		"COPPER":
+			print("copper get!");
+			copper_count += 1
+			print(copper_count);
+			pass
+		_:
+			print("ERROR: IN pickup() ON MAIN_CHARACTER: TYPE NOT SET CORRECTLY")
+			pass
 func fire():
 	emit_signal("shoot")

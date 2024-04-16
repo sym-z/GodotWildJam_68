@@ -42,3 +42,5 @@ func _on_shoot():
 	dir.x *= 2
 	bullet.linear_velocity = dir * projectile_speed
 	screen_bullets.append(bullet)
+
+	

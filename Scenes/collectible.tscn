@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8n71dy74tpef"]
+[gd_scene load_steps=12 format=3 uid="uid://ohag55p57tny"]
 
 [ext_resource type="Script" path="res://Scripts/collectible.gd" id="1_gpwsr"]
 [ext_resource type="Texture2D" uid="uid://dkijiqsnmgm6j" path="res://Sprites/coal_sprites/coal1.png" id="2_t2fx4"]

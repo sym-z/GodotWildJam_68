@@ -1,6 +1,8 @@
 extends CharacterBody2D
 @export var health : int  = 3
 var bullet = preload("res://Scenes/projectile.tscn")
+var drop = preload("res://Scenes/collectible.tscn")
+
 const SPEED = 10.0
 @export var player : CharacterBody2D
 
@@ -32,7 +34,16 @@ func follow(delta):
 func die():
 	# TODO: Play death animation
 	$AnimatedSprite2D.visible = false
+	var dad = get_parent();
+	var loot = drop.instantiate()
+	dad.add_child(loot);
+	loot.position = self.position
+	# Determine the type of loot you want to spawn
+	loot.set_type("GOLD");
+	print(loot.type);
 	queue_free()
+	
+
 
 func _physics_process(delta):
 	if(status != state.DEATH):
@@ -42,8 +53,8 @@ func _physics_process(delta):
 
 func _on_hurtbox_entered(body):
 	if body.has_method("hurt"):
-		body.hurt()
 		damage(body)
+		body.hurt()
 
 func damage(body):
 	if !body.landed:
@@ -57,9 +68,6 @@ func damage(body):
 		$AnimatedSprite2D.stop()
 		$AnimatedSprite2D.play()
 
-#func _on_hurtbox_entered(body):
-	#if body.has_method("hurt"):
-		#damage(body);
 
 func _on_2d_animation_changed():
 	if $AnimatedSprite2D.animation == "hurt":
@@ -70,6 +78,7 @@ func _on_2d_animation_changed():
 
 func _on_timer_timeout():
 	if health <= 0:
+		status = state.DEATH
 		die()
 	else:
 		$AnimatedSprite2D.animation = "default"

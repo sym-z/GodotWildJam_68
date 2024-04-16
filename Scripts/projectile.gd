@@ -17,8 +17,17 @@ func hurt():
 	pass
 
 
+
+
+
+
 func _on_area_2d_body_entered(body):
+	print(body)
+	# When the bullet touches an enemy, it sends what type of projectile it is, and sets landed to be true
 	if body.has_method("damage"):
+		print("hit")
 		body.damage(self);
-		print("hit");
 		landed = true;
+	elif body.has_method("wall"):
+		hurt()
+

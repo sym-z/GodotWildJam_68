@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de7phia2634ps"
-path="res://.godot/imported/turt.png-da1018dab757d262c283f3efdcd43c49.ctex"
+uid="uid://bjaijno4kkqrs"
+path="res://.godot/imported/grate_tm.png-5099d7f64d0d2b2c9cb49d7e74355690.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/turt.png"
-dest_files=["res://.godot/imported/turt.png-da1018dab757d262c283f3efdcd43c49.ctex"]
+source_file="res://Sprites/grate_tm.png"
+dest_files=["res://.godot/imported/grate_tm.png-5099d7f64d0d2b2c9cb49d7e74355690.ctex"]
 
 [params]
 
