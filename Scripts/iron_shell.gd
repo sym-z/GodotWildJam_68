@@ -6,10 +6,6 @@
 	# Look Up
 	# Look Down
 	# Death
-	# Walk Up
-	# Walk Down
-	# Walk Left
-	# Walk Right
 	# Metal Pickup
 
 # TODO: USE THESE
@@ -29,17 +25,21 @@ enum dir {LEFT = 0,RIGHT = 2,UP = 4,DOWN = 8}
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction : Vector2
 
+
 signal shoot
 
 @export var push_force  = 1000
 @export var projectile_speed = 500.0
 @export var walk_speed  = 6000.0
 @export var facing = dir.RIGHT;
+@export var health : int = 5
+@export var damage_over_time : int = 0
 
 var gold_count : int = 0 
 var coal_count : int = 0
 var iron_count : int = 0
 var copper_count : int = 0
+
 
 
 func _ready():
@@ -105,6 +105,7 @@ func movement_input(delta):
 		velocity.x = move_toward(velocity.x, 0, walk_speed)
 		velocity.y = move_toward(velocity.y, 0, walk_speed)
 
+
 func pickup(type):
 	if type == "COAL":
 		pass
@@ -134,3 +135,30 @@ func pickup(type):
 			pass
 func fire():
 	emit_signal("shoot")
+
+func game_over():
+	print("Dead")
+	
+func _on_hurt_box_entered(body):
+	if body.has_method("enemy"):
+		health -= 1
+		# Show hurt animation
+		# Check for death
+		print("Health: ", health)
+		$DamageTick.start()
+		damage_over_time += 1
+		print(damage_over_time)
+	pass # Replace with function body.
+
+
+func _on_hurt_box_exited(body):
+	# Used to turn off chain hitting
+	damage_over_time -= 1
+	# TODO: Set up timer to tick damage
+	print(damage_over_time)
+	
+	pass # Replace with function body.
+
+
+func _on_damage_tick():
+	pass # Replace with function body.

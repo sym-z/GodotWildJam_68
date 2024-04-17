@@ -10,6 +10,10 @@ const SPEED = 10.0
 enum state {PATROL, TARGET, ATTACK, HURT, DEATH}
 
 @export var status : state
+
+func enemy():
+	pass
+	
 func _ready():
 	status = state.PATROL
 	$AnimatedSprite2D.play()

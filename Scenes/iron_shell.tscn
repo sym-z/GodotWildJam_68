@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://gb07ukqnwgtn"]
+[gd_scene load_steps=15 format=3 uid="uid://gb07ukqnwgtn"]
 
 [ext_resource type="Script" path="res://Scripts/iron_shell.gd" id="1_tqp1e"]
 [ext_resource type="Texture2D" uid="uid://duog7m3qtvpb2" path="res://Sprites/turt_anims/turt_idle1.png" id="2_cxbab"]
@@ -68,6 +68,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hxy5x"]
 radius = 7.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nncb"]
+size = Vector2(15, 13)
+
 [node name="Iron_Shell" type="CharacterBody2D"]
 script = ExtResource("1_tqp1e")
 
@@ -81,3 +84,17 @@ shape = SubResource("CircleShape2D_hxy5x")
 
 [node name="RayCast2D" type="RayCast2D" parent="Collision Shape"]
 target_position = Vector2(32, 0)
+
+[node name="Hurt Box" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurt Box"]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_3nncb")
+
+[node name="DamageTick" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Hurt Box" to="." method="_on_hurt_box_entered"]
+[connection signal="body_exited" from="Hurt Box" to="." method="_on_hurt_box_exited"]
+[connection signal="timeout" from="DamageTick" to="." method="_on_damage_tick"]

@@ -20,7 +20,6 @@ config/icon="res://Sprites/icon.svg"
 
 window/size/viewport_width=320
 window/size/viewport_height=288
-window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [input]
