@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsmuds1t4e8dn"]
+
+[ext_resource type="Texture2D" uid="uid://cas6gn8ui5dgv" path="res://Sprites/plasma_anims/plasma_hwalk1.png" id="1_5tm6b"]
+[ext_resource type="Texture2D" uid="uid://dikttduk07et2" path="res://Sprites/plasma_anims/plasma_hwalk2.png" id="2_15ly5"]
+[ext_resource type="Texture2D" uid="uid://xoxceolxb5ub" path="res://Sprites/plasma_anims/plasma_hwalk3.png" id="3_t251q"]
+[ext_resource type="Texture2D" uid="uid://b8rnk83s73dkj" path="res://Sprites/plasma_anims/plasma_hwalk4.png" id="4_5qlen"]
+[ext_resource type="Texture2D" uid="uid://meq500gu12x5" path="res://Sprites/plasma_anims/plasma_hwalk5.png" id="5_670wm"]
+[ext_resource type="Texture2D" uid="uid://q68q1xjxbumk" path="res://Sprites/plasma_anims/plasma_hwalk6.png" id="6_jasnv"]
+[ext_resource type="Texture2D" uid="uid://dhjcxobij7x0l" path="res://Sprites/plasma_anims/plasma_hwalk7.png" id="7_62h7l"]
+[ext_resource type="Texture2D" uid="uid://c08l1lnbyujqa" path="res://Sprites/plasma_anims/plasma_hwalk8.png" id="8_p0pwt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmetx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5tm6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_15ly5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t251q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5qlen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_670wm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jasnv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_62h7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_p0pwt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_lmetx")

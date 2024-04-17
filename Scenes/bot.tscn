@@ -38,7 +38,7 @@ size = Vector2(14, 10)
 size = Vector2(14, 10)
 
 [node name="Bot" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_7eqj4")
 
@@ -55,7 +55,7 @@ shape = SubResource("RectangleShape2D_awwdp")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 1)

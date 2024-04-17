@@ -4,6 +4,7 @@ var screen_bullets = []
 var projectile_speed : float = 200.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Camera2D.position = $"Cam Markers/Room 1".position
 	var enemies = get_children()
 	for x in enemies:
 		if x.has_method("damage"):

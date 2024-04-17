@@ -152,12 +152,14 @@ func _on_hurt_box_entered(body):
 
 
 func _on_hurt_box_exited(body):
-	# Used to turn off chain hitting
-	damage_over_time -= 1
-	# TODO: Set up timer to tick damage
-	print(damage_over_time)
-	
-	pass # Replace with function body.
+	if body.has_method("enemy"):
+		# Used to turn off chain hitting
+		damage_over_time -= 1
+		# TODO: Set up timer to tick damage
+		print(body)
+		print(damage_over_time)
+		
+		pass # Replace with function body.
 
 
 func _on_damage_tick():

@@ -36,10 +36,11 @@ sprite_frames = SubResource("SpriteFrames_ecjmh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3cgrx")
+disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 6
-collision_mask = 6
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_kdafw")

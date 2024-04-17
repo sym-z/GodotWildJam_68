@@ -1,0 +1,113 @@
+[gd_scene load_steps=20 format=3 uid="uid://cifsykwjx7mkp"]
+
+[ext_resource type="Texture2D" uid="uid://cas6gn8ui5dgv" path="res://Sprites/plasma_anims/plasma_hwalk1.png" id="1_4vduv"]
+[ext_resource type="Script" path="res://Scripts/plasma.gd" id="1_si7tq"]
+[ext_resource type="Texture2D" uid="uid://dikttduk07et2" path="res://Sprites/plasma_anims/plasma_hwalk2.png" id="2_is4i3"]
+[ext_resource type="Texture2D" uid="uid://xoxceolxb5ub" path="res://Sprites/plasma_anims/plasma_hwalk3.png" id="3_aw706"]
+[ext_resource type="Texture2D" uid="uid://b8rnk83s73dkj" path="res://Sprites/plasma_anims/plasma_hwalk4.png" id="4_h4vpf"]
+[ext_resource type="Texture2D" uid="uid://meq500gu12x5" path="res://Sprites/plasma_anims/plasma_hwalk5.png" id="5_18tol"]
+[ext_resource type="Texture2D" uid="uid://q68q1xjxbumk" path="res://Sprites/plasma_anims/plasma_hwalk6.png" id="6_7av4a"]
+[ext_resource type="Texture2D" uid="uid://dhjcxobij7x0l" path="res://Sprites/plasma_anims/plasma_hwalk7.png" id="7_anhv2"]
+[ext_resource type="Texture2D" uid="uid://c08l1lnbyujqa" path="res://Sprites/plasma_anims/plasma_hwalk8.png" id="8_ceg24"]
+[ext_resource type="Texture2D" uid="uid://bg64nsrobdp6u" path="res://Sprites/plasma_anims/plasma_hurt1.png" id="10_s6kh8"]
+[ext_resource type="Texture2D" uid="uid://d31puebuteyh5" path="res://Sprites/plasma_anims/plasma_hurt2.png" id="11_ixwyf"]
+[ext_resource type="Texture2D" uid="uid://canplhoktsp3i" path="res://Sprites/plasma_anims/plasma_hurt3.png" id="12_1gxw4"]
+[ext_resource type="Texture2D" uid="uid://dtuwi4u0jv2v" path="res://Sprites/plasma_anims/plasma_hurt4.png" id="13_ir2bv"]
+[ext_resource type="Texture2D" uid="uid://cgekkgme66xvc" path="res://Sprites/plasma_anims/plasma_hurt5.png" id="14_ljges"]
+[ext_resource type="Texture2D" uid="uid://de3jnjwcvltgi" path="res://Sprites/plasma_anims/plasma_hurt6.png" id="15_a4jqc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_la43c"]
+radius = 6.70762
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n14oo"]
+size = Vector2(48, 22.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p7bpd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4vduv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_is4i3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_aw706")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h4vpf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_18tol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7av4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_anhv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ceg24")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_s6kh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ixwyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_1gxw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ir2bv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ljges")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_a4jqc")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4maxk"]
+size = Vector2(48, 48)
+
+[node name="Plasma" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_si7tq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+rotation = -3.14159
+scale = Vector2(2.39214, -2.41354)
+shape = SubResource("CircleShape2D_la43c")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+scale = Vector2(1, 0.8)
+shape = SubResource("RectangleShape2D_n14oo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_p7bpd")
+frame_progress = 0.915642
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D"]
+one_shot = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_4maxk")
+
+[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_2d_animation_changed"]
+[connection signal="timeout" from="AnimatedSprite2D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_entered"]
