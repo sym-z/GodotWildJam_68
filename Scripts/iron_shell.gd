@@ -45,6 +45,9 @@ var copper_count : int = 0
 func _ready():
 	$Sprite.play()
 
+func _process(delta):
+	craft();
+
 func _physics_process(delta):
 	# Grab input from user
 	direction = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
@@ -105,7 +108,12 @@ func movement_input(delta):
 		velocity.x = move_toward(velocity.x, 0, walk_speed)
 		velocity.y = move_toward(velocity.y, 0, walk_speed)
 
-
+func craft():
+	if Input.is_action_just_pressed("Craft Menu"):
+		if $"../Camera2D/Crafting Menu".visible == false:
+			$"../Camera2D/Crafting Menu".visible = true
+		else:
+			$"../Camera2D/Crafting Menu".visible = false
 func pickup(type):
 	if type == "COAL":
 		pass

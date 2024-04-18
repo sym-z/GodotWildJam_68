@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0o7phldvmsay"]
+
+[ext_resource type="Texture2D" uid="uid://de0dith4luelr" path="res://Sprites/shell_menu.png" id="1_y5lml"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n2lss"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y5lml")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Crafting Menu" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_n2lss")

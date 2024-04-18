@@ -5,7 +5,7 @@ var projectile_speed : float = 200.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Camera2D.position = $"Rooms/Room 1/Cam Marker".position
-	var enemies = get_children()
+	var enemies = $Enemies.get_children()
 	for x in enemies:
 		if x.has_method("damage"):
 			x.player = $Iron_Shell;

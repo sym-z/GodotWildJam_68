@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2nkuowms1gs6"]
+
+[ext_resource type="Texture2D" uid="uid://d4j77snpmvpor" path="res://Sprites/props/barrel1.png" id="1_nvbqu"]
+[ext_resource type="Texture2D" uid="uid://cui6jx645x34u" path="res://Sprites/props/barrel2.png" id="2_mjskr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ypdl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nvbqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mjskr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1djbw"]
+radius = 11.0
+height = 28.0
+
+[node name="Barrel" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8ypdl")
+frame_progress = 0.237898
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CapsuleShape2D_1djbw")
