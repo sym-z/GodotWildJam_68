@@ -60,6 +60,7 @@ Fire={
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Projectile"
 2d_physics/layer_4="Collectible"
+2d_physics/layer_8="Enemy Wall"
 
 [rendering]
 

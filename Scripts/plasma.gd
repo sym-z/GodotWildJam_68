@@ -23,7 +23,7 @@ func _ready():
 
 func follow(delta):
 	var target_position = player.position
-	if(position.distance_to(target_position) < 200):
+	if(position.distance_to(target_position) < 150):
 		status = state.TARGET
 		if abs(target_position.y - position.y) >= abs(target_position.x - position.x):
 			velocity = Vector2(0, target_position.y - position.y).normalized() * 5000 * delta

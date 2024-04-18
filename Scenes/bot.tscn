@@ -39,7 +39,7 @@ size = Vector2(14, 10)
 
 [node name="Bot" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 132
 script = ExtResource("1_7eqj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
