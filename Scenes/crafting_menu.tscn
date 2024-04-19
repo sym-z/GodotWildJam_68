@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0o7phldvmsay"]
+[gd_scene load_steps=5 format=3 uid="uid://c0o7phldvmsay"]
 
 [ext_resource type="Texture2D" uid="uid://mo1bc3xml8o2" path="res://Sprites/crafting_menu/shell_menu.png" id="1_3nq1g"]
+[ext_resource type="Script" path="res://Scripts/crafting_menu.gd" id="1_cvyto"]
 [ext_resource type="PackedScene" uid="uid://dob61pdp1lg86" path="res://Scenes/number.tscn" id="2_8ka75"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n2lss"]
@@ -15,6 +16,7 @@ animations = [{
 }]
 
 [node name="Crafting Menu" type="Node2D"]
+script = ExtResource("1_cvyto")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 5

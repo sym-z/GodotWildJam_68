@@ -28,7 +28,10 @@ func set_type(type : String):
 
 func _on_body_entered(body):
 	if body.name == "Iron_Shell":
+		var pick : bool = body.coal_count == body.max_hp
 		body.pickup(type)
+		var pick2 = type == "COAL"
 		# Destroy Self
-		queue_free()
+		if !pick || !pick2:
+			queue_free()
 	pass # Replace with function body.

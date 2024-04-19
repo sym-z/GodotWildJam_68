@@ -44,37 +44,44 @@ var iron_count : int = 0
 # Speed Upgrades
 var copper_count : int = 0
 
+# For upgrading the hp later
+var max_hp : int = 5
 
+var alive : bool = true
 
 func _ready():
 	$Sprite.play()
 	
 
 func _process(delta):
-	var peeps = $"Hurt Box".get_overlapping_bodies()
-	var peep_amt : int = 0
-	for peep in peeps:
-		if peep.has_method("enemy"):
-			peep_amt += 1
-	damage_over_time = peep_amt;
-	#print(peep_amt)
-	craft();
+	if alive:
+		var peeps = $"Hurt Box".get_overlapping_bodies()
+		var peep_amt : int = 0
+		for peep in peeps:
+			if peep.has_method("enemy"):
+				peep_amt += 1
+		damage_over_time = peep_amt;
+		#print(peep_amt)
+		craft();
+		if coal_count <= 0:
+			game_over()
 
 func _physics_process(delta):
-	# Grab input from user
-	direction = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
-	# Move the character
-	movement_input(delta)
-	# Turn Sprite, change aiming direction
-	look()
-	# Push RigidBody2D's
-	push()
-	# Fire Weapon
-	if Input.is_action_just_pressed("Fire"):
-		fire()
-	# Calculate Physics
-	move_and_slide()
-	
+	if alive:
+		# Grab input from user
+		direction = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
+		# Move the character
+		movement_input(delta)
+		# Turn Sprite, change aiming direction
+		look()
+		# Push RigidBody2D's
+		push()
+		# Fire Weapon
+		if Input.is_action_just_pressed("Fire"):
+			fire()
+		# Calculate Physics
+		move_and_slide()
+		
 func push():
 	if $".".move_and_slide():
 		for collisionIndex in $".".get_slide_collision_count():
@@ -132,9 +139,10 @@ func pickup(type):
 	match type:
 		"COAL":
 			print("coal get!");
-			coal_count += 1
-			print(coal_count);
-			pass
+			if coal_count < max_hp:
+				coal_count += 1
+				print(coal_count);
+				pass
 		"GOLD":
 			print("gold get!");
 			gold_count += 1
@@ -157,12 +165,14 @@ func fire():
 	emit_signal("shoot")
 
 func game_over():
+	alive = false
+	visible = false
+	# TODO: CHANGE TO GAME OVER SCENE
 	print("Dead")
 	
 func take_damage():
 	coal_count -= 1
-	if coal_count == 0:
-		game_over()
+
 
 func _on_hurt_box_entered(body):
 	if body.has_method("enemy"):
