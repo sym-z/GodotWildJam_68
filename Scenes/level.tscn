@@ -790,22 +790,18 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Blockers/StaticBody2D"]
 position = Vector2(-1.11225, 303.321)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_1s42e")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemy Blockers/StaticBody2D"]
 position = Vector2(84.3085, 303.321)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_1s42e")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Enemy Blockers/StaticBody2D"]
 position = Vector2(41.4869, 193.023)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_uvgck")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Enemy Blockers/StaticBody2D"]
 position = Vector2(41.6537, 413.62)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_uvgck")
 
 [node name="Camera2D" type="Camera2D" parent="."]
