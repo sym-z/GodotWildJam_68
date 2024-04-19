@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://jmntmbcdodud"]
+
+[ext_resource type="Texture2D" uid="uid://cak44484whw0t" path="res://Sprites/props/metal_floor.png" id="1_bo1as"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aufpm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bo1as")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Metal_Panel_64" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_aufpm")

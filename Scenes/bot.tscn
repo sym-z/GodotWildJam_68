@@ -38,6 +38,7 @@ size = Vector2(14, 10)
 size = Vector2(14, 10)
 
 [node name="Bot" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 2
 collision_mask = 150
 script = ExtResource("1_7eqj4")

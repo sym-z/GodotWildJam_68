@@ -1,13 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://7dsbxi78spi3"]
+[gd_scene load_steps=23 format=3 uid="uid://7dsbxi78spi3"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_nwdro"]
 [ext_resource type="Texture2D" uid="uid://bjdhr2is4k0bt" path="res://Sprites/screentest.png" id="2_fidii"]
 [ext_resource type="PackedScene" uid="uid://c7pt3gn12013l" path="res://Scenes/default_tm.tscn" id="3_84jog"]
 [ext_resource type="PackedScene" uid="uid://gb07ukqnwgtn" path="res://Scenes/iron_shell.tscn" id="4_djyh1"]
 [ext_resource type="PackedScene" uid="uid://b4geafs820qx5" path="res://Scenes/bot.tscn" id="5_44mmy"]
+[ext_resource type="Texture2D" path="res://Sprites/hud_bg_beta3.png" id="7_1bjkb"]
 [ext_resource type="PackedScene" uid="uid://dob61pdp1lg86" path="res://Scenes/number.tscn" id="7_g5oj6"]
-[ext_resource type="Texture2D" uid="uid://inv021yinp84" path="res://Sprites/hud_bg_beta.png" id="7_qm8kc"]
+[ext_resource type="Texture2D" path="res://Sprites/hud_bg_beta2.png" id="8_8mmij"]
 [ext_resource type="Texture2D" uid="uid://dkijiqsnmgm6j" path="res://Sprites/coal_sprites/coal1.png" id="9_fyl61"]
+[ext_resource type="Texture2D" path="res://Sprites/hud_bg_beta1.png" id="9_ucu1q"]
 [ext_resource type="Texture2D" uid="uid://bqr30huxesqtf" path="res://Sprites/gold_sprite/gold1.png" id="10_56rqp"]
 [ext_resource type="Texture2D" uid="uid://dfhs4nq555f84" path="res://Sprites/iron_sprite/iron1.png" id="11_wyb1o"]
 [ext_resource type="PackedScene" uid="uid://c31w8j8h6er4t" path="res://Scenes/door.tscn" id="12_efb5w"]
@@ -15,13 +17,20 @@
 [ext_resource type="PackedScene" uid="uid://cifsykwjx7mkp" path="res://Scenes/plasma.tscn" id="13_dshr2"]
 [ext_resource type="PackedScene" uid="uid://d2nkuowms1gs6" path="res://Scenes/barrel.tscn" id="14_gcyvl"]
 [ext_resource type="PackedScene" uid="uid://c0o7phldvmsay" path="res://Scenes/crafting_menu.tscn" id="14_vwe4i"]
+[ext_resource type="PackedScene" uid="uid://jmntmbcdodud" path="res://Scenes/metal_panel_64.tscn" id="16_1jorl"]
 [ext_resource type="PackedScene" uid="uid://dvenmixrmh1ej" path="res://Scenes/door_signals.tscn" id="16_rtcue"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uveqc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_qm8kc")
+"texture": ExtResource("7_1bjkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8mmij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ucu1q")
 }],
 "loop": true,
 "name": &"default",
@@ -75,6 +84,7 @@ position = Vector2(86, 161)
 [node name="Hud Background" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(160, 264)
 sprite_frames = SubResource("SpriteFrames_uveqc")
+frame_progress = 0.00527604
 
 [node name="Numbers" type="Node2D" parent="Hud"]
 
@@ -222,6 +232,21 @@ position = Vector2(270, 43)
 
 [node name="Barrel4" parent="Rooms/Room 1" instance=ExtResource("14_gcyvl")]
 position = Vector2(45, 38)
+
+[node name="Metal_Panel_64" parent="Rooms/Room 1" instance=ExtResource("16_1jorl")]
+position = Vector2(256, 56)
+
+[node name="Metal_Panel_65" parent="Rooms/Room 1" instance=ExtResource("16_1jorl")]
+position = Vector2(56, 190)
+
+[node name="Metal_Panel_66" parent="Rooms/Room 1" instance=ExtResource("16_1jorl")]
+position = Vector2(58, 53)
+
+[node name="Metal_Panel_67" parent="Rooms/Room 1" instance=ExtResource("16_1jorl")]
+position = Vector2(249, 189)
+
+[node name="Metal_Panel_68" parent="Rooms/Room 1" instance=ExtResource("16_1jorl")]
+position = Vector2(160, 122)
 
 [node name="Room 2" type="Node2D" parent="Rooms"]
 position = Vector2(768, -288)
