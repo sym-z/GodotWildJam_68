@@ -12,6 +12,7 @@ func _process(delta):
 
 func set_type(type : String):
 	self.type = type
+	print("SETTING TYPE")
 	match type:
 		"COAL":
 			$AnimatedSprite2D.animation = "coal"

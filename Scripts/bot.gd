@@ -5,7 +5,7 @@ var drop = preload("res://Scenes/collectible.tscn")
 
 const SPEED = 10.0
 @export var player : CharacterBody2D
-
+@export var locs = []
 # To handle state machine
 enum state {PATROL, TARGET, ATTACK, HURT, DEATH}
 
@@ -13,10 +13,14 @@ enum state {PATROL, TARGET, ATTACK, HURT, DEATH}
 
 func enemy():
 	pass
+
+#func drop_loot():
+	
 	
 func _ready():
 	status = state.PATROL
 	$AnimatedSprite2D.play()
+	locs = $"Drop Locations".get_children()
 
 #func _process(delta):
 	#follow()
@@ -41,9 +45,22 @@ func die():
 	var dad = get_parent();
 	var loot = drop.instantiate()
 	dad.add_child(loot);
-	loot.position = self.position
+	var index = randi_range(0, locs.size() - 1)
+	
+	loot.position = locs[index].global_position
 	# Determine the type of loot you want to spawn
-	loot.set_type("GOLD");
+	var t : String
+	var randy = randi_range(0,9)
+	if randy <= 3: # 40% 0, 1, 2, 3
+		t = "COAL"
+	elif randy <= 6: # 30% 4, 5, 6
+		t = "COPPER"
+	elif randy <= 8: # 20% 7,8
+		t = "IRON"
+	else:  # 10% 9
+		t = "GOLD"
+	
+	loot.set_type(t);
 	print(loot.type);
 	queue_free()
 	

@@ -10,6 +10,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$AnimatedSprite2D.flip_h = true if (linear_velocity.x <= 0) else false
+	$AnimatedSprite2D.frame = 1 if (linear_velocity.y != 0) else 0
+	$AnimatedSprite2D.flip_v = true if($AnimatedSprite2D.frame == 1 && linear_velocity.y > 0) else false
+	print($AnimatedSprite2D.frame)
 	if landed:
 		hurt()
 	pass

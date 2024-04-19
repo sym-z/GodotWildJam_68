@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyn2v2ko0mo70"
-path="res://.godot/imported/betaprojectile.png-a8ccaa9c16fa26f1c4c029b60019077f.ctex"
+uid="uid://bej8e6blm7jcl"
+path="res://.godot/imported/sword_vert.png-9f8c818f810c8543b2b3143065b9b35c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/betaprojectile.png"
-dest_files=["res://.godot/imported/betaprojectile.png-a8ccaa9c16fa26f1c4c029b60019077f.ctex"]
+source_file="res://Sprites/Projectile_sprites/sword_vert.png"
+dest_files=["res://.godot/imported/sword_vert.png-9f8c818f810c8543b2b3143065b9b35c.ctex"]
 
 [params]
 

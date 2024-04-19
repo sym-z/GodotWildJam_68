@@ -66,6 +66,7 @@ animations = [{
 }]
 
 [node name="Area2D" type="Area2D"]
+z_index = 2
 collision_layer = 8
 script = ExtResource("1_gpwsr")
 

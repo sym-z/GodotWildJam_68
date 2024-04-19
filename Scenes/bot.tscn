@@ -69,6 +69,17 @@ shape = SubResource("RectangleShape2D_0jfbx")
 
 [node name="Marker2D2" type="Marker2D" parent="Node2D"]
 
+[node name="Drop Locations" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Drop Locations"]
+position = Vector2(1, 9)
+
+[node name="Marker2D2" type="Marker2D" parent="Drop Locations"]
+position = Vector2(12, 2)
+
+[node name="Marker2D3" type="Marker2D" parent="Drop Locations"]
+position = Vector2(-1, -7)
+
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_2d_animation_changed"]
 [connection signal="timeout" from="AnimatedSprite2D/Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_entered"]

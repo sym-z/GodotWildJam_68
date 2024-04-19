@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://drg4gdmgj1uru"]
+[gd_scene load_steps=8 format=3 uid="uid://drg4gdmgj1uru"]
 
-[ext_resource type="Texture2D" uid="uid://dyn2v2ko0mo70" path="res://Sprites/betaprojectile.png" id="1_7boq6"]
 [ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_62oho"]
+[ext_resource type="Texture2D" uid="uid://dyn2v2ko0mo70" path="res://Sprites/Projectile_sprites/betaprojectile.png" id="2_hx0i8"]
+[ext_resource type="Texture2D" uid="uid://bej8e6blm7jcl" path="res://Sprites/Projectile_sprites/sword_vert.png" id="3_t6g40"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_msj2r"]
 
@@ -9,7 +10,10 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_7boq6")
+"texture": ExtResource("2_hx0i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t6g40")
 }],
 "loop": true,
 "name": &"default",

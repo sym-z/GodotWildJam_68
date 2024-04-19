@@ -95,6 +95,7 @@ position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_3nncb")
 
 [node name="DamageTick" type="Timer" parent="."]
+autostart = true
 
 [connection signal="body_entered" from="Hurt Box" to="." method="_on_hurt_box_entered"]
 [connection signal="body_exited" from="Hurt Box" to="." method="_on_hurt_box_exited"]

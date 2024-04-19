@@ -3,6 +3,8 @@ extends CharacterBody2D
 var bullet = preload("res://Scenes/projectile.tscn")
 var drop = preload("res://Scenes/collectible.tscn")
 
+
+var locs = []
 const SPEED = 10.0
 @export var player : CharacterBody2D
 
@@ -15,6 +17,7 @@ func enemy():
 	pass
 	
 func _ready():
+	locs = $"Drop Locations".get_children()
 	status = state.PATROL
 	$AnimatedSprite2D.play()
 
@@ -41,9 +44,22 @@ func die():
 	var dad = get_parent();
 	var loot = drop.instantiate()
 	dad.add_child(loot);
-	loot.position = self.position
+	var index = randi_range(0, locs.size() - 1)
+	
+	loot.position = locs[index].global_position
 	# Determine the type of loot you want to spawn
-	loot.set_type("GOLD");
+	var t : String
+	var randy = randi_range(0,9)
+	if randy <= 3: # 40% 0, 1, 2, 3
+		t = "COAL"
+	elif randy <= 6: # 30% 4, 5, 6
+		t = "COPPER"
+	elif randy <= 8: # 20% 7,8
+		t = "IRON"
+	else:  # 10% 9
+		t = "GOLD"
+	
+	loot.set_type(t);
 	print(loot.type);
 	queue_free()
 	
@@ -64,7 +80,8 @@ func damage(body):
 	if !body.landed:
 		var bounce_dir  = Vector2(body.position - position).normalized()
 		print(bounce_dir)
-		velocity += bounce_dir *500
+		# Push the enemy in the opposite direction of the displacement vector
+		velocity += -bounce_dir * 700
 		move_and_slide()
 		health -= 1
 		status = state.DEATH if (health <= 0) else state.HURT

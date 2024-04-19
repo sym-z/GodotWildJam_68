@@ -35,17 +35,29 @@ signal shoot
 @export var health : int = 5
 @export var damage_over_time : int = 0
 
+# Weapon Upgrades
 var gold_count : int = 0 
-var coal_count : int = 0
+# Health Value
+var coal_count : int = 5
+# Defense Upgrades
 var iron_count : int = 0
+# Speed Upgrades
 var copper_count : int = 0
 
 
 
 func _ready():
 	$Sprite.play()
+	
 
 func _process(delta):
+	var peeps = $"Hurt Box".get_overlapping_bodies()
+	var peep_amt : int = 0
+	for peep in peeps:
+		if peep.has_method("enemy"):
+			peep_amt += 1
+	damage_over_time = peep_amt;
+	#print(peep_amt)
 	craft();
 
 func _physics_process(delta):
@@ -147,28 +159,30 @@ func fire():
 func game_over():
 	print("Dead")
 	
+func take_damage():
+	coal_count -= 1
+	if coal_count == 0:
+		game_over()
+
 func _on_hurt_box_entered(body):
 	if body.has_method("enemy"):
-		health -= 1
-		# Show hurt animation
-		# Check for death
-		print("Health: ", health)
 		$DamageTick.start()
-		damage_over_time += 1
-		print(damage_over_time)
+		# Initial Damage
+		take_damage();
+		#damage_over_time += 1
+		#print(damage_over_time)
 	pass # Replace with function body.
 
 
 func _on_hurt_box_exited(body):
 	if body.has_method("enemy"):
 		# Used to turn off chain hitting
-		damage_over_time -= 1
-		# TODO: Set up timer to tick damage
-		print(body)
-		print(damage_over_time)
-		
 		pass # Replace with function body.
 
 
 func _on_damage_tick():
-	pass # Replace with function body.
+	#print("Hit for ", damage_over_time, " damage");
+	#print("Health is now ", coal_count)
+	coal_count -= damage_over_time
+	#take_damage()
+	

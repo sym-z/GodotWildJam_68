@@ -113,6 +113,17 @@ z_index = 1
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_4maxk")
 
+[node name="Drop Locations" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Drop Locations"]
+position = Vector2(-28, 14)
+
+[node name="Marker2D2" type="Marker2D" parent="Drop Locations"]
+position = Vector2(-2, 29)
+
+[node name="Marker2D3" type="Marker2D" parent="Drop Locations"]
+position = Vector2(31, 16)
+
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_2d_animation_changed"]
 [connection signal="timeout" from="AnimatedSprite2D/Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_entered"]

@@ -34,7 +34,7 @@ func _on_shoot():
 	var bullet = bullet_scene.instantiate()
 	var dir : Vector2
 	add_child(bullet)
-	bullet.position = $Iron_Shell.position
+	bullet.position = $Iron_Shell.global_position
 	match $Iron_Shell.facing:
 		0:
 			dir = Vector2.LEFT
@@ -48,6 +48,7 @@ func _on_shoot():
 	dir += $Iron_Shell.velocity.normalized() 
 	dir.x *= 2
 	bullet.linear_velocity = dir * projectile_speed
+	print(bullet.linear_velocity)
 	screen_bullets.append(bullet)
 
 	
