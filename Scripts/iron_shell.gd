@@ -168,6 +168,7 @@ func game_over():
 	alive = false
 	visible = false
 	# TODO: CHANGE TO GAME OVER SCENE
+	get_tree().change_scene_to_file("res://Scenes/ending_screen.tscn")
 	print("Dead")
 	
 func take_damage():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://7dsbxi78spi3"]
+[gd_scene load_steps=23 format=3 uid="uid://7dsbxi78spi3"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_nwdro"]
 [ext_resource type="Texture2D" uid="uid://bjdhr2is4k0bt" path="res://Sprites/screentest.png" id="2_fidii"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://c0o7phldvmsay" path="res://Scenes/crafting_menu.tscn" id="14_vwe4i"]
 [ext_resource type="PackedScene" uid="uid://jmntmbcdodud" path="res://Scenes/metal_panel_64.tscn" id="16_1jorl"]
 [ext_resource type="PackedScene" uid="uid://dvenmixrmh1ej" path="res://Scenes/door_signals.tscn" id="16_rtcue"]
-[ext_resource type="Script" path="res://Scripts/crafting_menu.gd" id="20_inwc8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uveqc"]
 animations = [{
@@ -838,6 +837,5 @@ position = Vector2(160, 144)
 visible = false
 z_index = 5
 position = Vector2(0, -24)
-script = ExtResource("20_inwc8")
 
 [connection signal="shoot" from="Iron_Shell" to="." method="_on_shoot"]
