@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://gb07ukqnwgtn"]
+[gd_scene load_steps=31 format=3 uid="uid://gb07ukqnwgtn"]
 
 [ext_resource type="Script" path="res://Scripts/iron_shell.gd" id="1_tqp1e"]
 [ext_resource type="Texture2D" uid="uid://duog7m3qtvpb2" path="res://Sprites/turt_anims/turt_idle1.png" id="2_cxbab"]
@@ -6,10 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://b34dap5du4y71" path="res://Sprites/turt_anims/turt_idle3.png" id="4_qoocg"]
 [ext_resource type="Texture2D" uid="uid://b3ro3wyoxidj5" path="res://Sprites/turt_anims/turt_idle4.png" id="5_1yrvg"]
 [ext_resource type="Texture2D" uid="uid://byv3bx41c2imi" path="res://Sprites/turt_anims/turt_wals/down_walk/downwalk1.png" id="6_2y7qm"]
+[ext_resource type="Texture2D" uid="uid://dwcyq4584f44b" path="res://Sprites/turt_anims/turt_wals/down_walk/down_hurt2.png" id="6_712rw"]
 [ext_resource type="Texture2D" uid="uid://daljongjdohcm" path="res://Sprites/turt_anims/turt_wals/down_walk/downwalk2.png" id="7_32h33"]
+[ext_resource type="Texture2D" uid="uid://rgsqo51dm1cl" path="res://Sprites/turt_anims/turt_wals/down_walk/down_hurt.png" id="7_bohcq"]
 [ext_resource type="Texture2D" uid="uid://bvhdaph7wpqcl" path="res://Sprites/turt_anims/turt_wals/h_walk/turt_hwalk1.png" id="8_00vvr"]
+[ext_resource type="Texture2D" uid="uid://dg133fmb5tv53" path="res://Sprites/turt_anims/turt_wals/h_walk/hurt_h1.png" id="8_38np1"]
 [ext_resource type="Texture2D" uid="uid://btfmy0oq0gmqr" path="res://Sprites/turt_anims/turt_wals/h_walk/turt_hwalk2.png" id="9_bwq8p"]
+[ext_resource type="Texture2D" uid="uid://drp7cvgh3g3ci" path="res://Sprites/turt_anims/turt_wals/h_walk/hurt_h2.png" id="9_vti27"]
 [ext_resource type="Texture2D" uid="uid://corcslmy4cq7g" path="res://Sprites/turt_anims/turt_wals/up_walk/upwalk1.png" id="10_fhkad"]
+[ext_resource type="Texture2D" uid="uid://bhbv5vwym10xh" path="res://Sprites/turt_anims/turt_wals/up_walk/up_hurt1.png" id="10_nif72"]
+[ext_resource type="Texture2D" uid="uid://bvaf7mr5v6v0f" path="res://Sprites/turt_anims/turt_wals/up_walk/up_hurt2.png" id="11_62e2h"]
 [ext_resource type="Texture2D" uid="uid://bktxeam7mtqlh" path="res://Sprites/turt_anims/turt_wals/up_walk/upwalk2.png" id="11_eomht"]
 [ext_resource type="Texture2D" uid="uid://wkjm1uelpryh" path="res://Sprites/Projectile_sprites/hammer_anim/hammer1.png" id="12_nxkb3"]
 [ext_resource type="Texture2D" uid="uid://npeiryrnuy7g" path="res://Sprites/Projectile_sprites/hammer_anim/hammer2.png" id="13_74odk"]
@@ -37,6 +43,75 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_712rw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bohcq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_712rw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bohcq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_712rw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bohcq")
+}],
+"loop": false,
+"name": &"down_hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_38np1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vti27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_38np1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vti27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_38np1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vti27")
+}],
+"loop": false,
+"name": &"h_hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_nif72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_62e2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_nif72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_62e2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_nif72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_62e2h")
+}],
+"loop": false,
+"name": &"up_hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -155,6 +230,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hammer/Area2D"]
 shape = SubResource("CircleShape2D_edww6")
 
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="body_entered" from="Hurt Box" to="." method="_on_hurt_box_entered"]
 [connection signal="body_exited" from="Hurt Box" to="." method="_on_hurt_box_exited"]
 [connection signal="timeout" from="DamageTick" to="." method="_on_damage_tick"]

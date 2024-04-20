@@ -51,6 +51,7 @@ var max_hp : int = 5
 var alive : bool = true
 
 func _ready():
+	#$Sprite.animation = wal
 	$Sprite.play()
 	
 
@@ -188,6 +189,19 @@ func game_over():
 	
 func take_damage():
 	coal_count -= 1
+	if $Sprite.animation == "walk_down":
+		$Sprite.animation = "down_hurt"
+		$Sprite.play()
+		
+		pass
+	if $Sprite.animation == "walk_h":
+		$Sprite.animation = "h_hurt"
+		$Sprite.play()
+		pass
+	if $Sprite.animation == "walk_up":
+		$Sprite.animation = "up_hurt"
+		$Sprite.play()
+		pass
 
 
 func _on_hurt_box_entered(body):
@@ -211,9 +225,34 @@ func _on_damage_tick():
 	#print("Health is now ", coal_count)
 	coal_count -= damage_over_time
 	#take_damage()
+	if damage_over_time != 0:
+		if $Sprite.animation == "walk_down":
+			$Sprite.animation = "down_hurt"
+			$Sprite.play()
+			
+			pass
+		if $Sprite.animation == "walk_h":
+			$Sprite.animation = "h_hurt"
+			$Sprite.play()
+			pass
+		if $Sprite.animation == "walk_up":
+			$Sprite.animation = "up_hurt"
+			$Sprite.play()
+			pass
 	
 
 
 func _o_on_hammer_animation_finished():
 	$Hammer.visible = false
+	pass # Replace with function body.
+
+
+func _on_sprite_animation_finished():
+	match $Sprite.animation:
+		"up_hurt":
+			$Sprite.animation = "walk_up"
+		"down_hurt":
+			$Sprite.animation = "walk_down"
+		"h_hurt":
+			$Sprite.animation = "walk_h"
 	pass # Replace with function body.
