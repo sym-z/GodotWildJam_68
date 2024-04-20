@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://gb07ukqnwgtn"]
+[gd_scene load_steps=25 format=3 uid="uid://gb07ukqnwgtn"]
 
 [ext_resource type="Script" path="res://Scripts/iron_shell.gd" id="1_tqp1e"]
 [ext_resource type="Texture2D" uid="uid://duog7m3qtvpb2" path="res://Sprites/turt_anims/turt_idle1.png" id="2_cxbab"]
@@ -11,6 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://btfmy0oq0gmqr" path="res://Sprites/turt_anims/turt_wals/h_walk/turt_hwalk2.png" id="9_bwq8p"]
 [ext_resource type="Texture2D" uid="uid://corcslmy4cq7g" path="res://Sprites/turt_anims/turt_wals/up_walk/upwalk1.png" id="10_fhkad"]
 [ext_resource type="Texture2D" uid="uid://bktxeam7mtqlh" path="res://Sprites/turt_anims/turt_wals/up_walk/upwalk2.png" id="11_eomht"]
+[ext_resource type="Texture2D" uid="uid://wkjm1uelpryh" path="res://Sprites/Projectile_sprites/hammer_anim/hammer1.png" id="12_nxkb3"]
+[ext_resource type="Texture2D" uid="uid://npeiryrnuy7g" path="res://Sprites/Projectile_sprites/hammer_anim/hammer2.png" id="13_74odk"]
+[ext_resource type="Texture2D" uid="uid://dwmaij2dxj6t1" path="res://Sprites/Projectile_sprites/hammer_anim/hammer3.png" id="14_daimq"]
+[ext_resource type="Texture2D" uid="uid://bic71h6g8vr6c" path="res://Sprites/Projectile_sprites/hammer_anim/hammer4.png" id="15_kxh7k"]
+[ext_resource type="Texture2D" uid="uid://dnfqql2b70ol5" path="res://Sprites/Projectile_sprites/hammer_anim/hammer5.png" id="16_txtgg"]
+[ext_resource type="Texture2D" uid="uid://dn2mjv4l1osbq" path="res://Sprites/Projectile_sprites/hammer_anim/hammer6.png" id="17_64xfb"]
+[ext_resource type="Texture2D" uid="uid://bhp5o6vedtx06" path="res://Sprites/Projectile_sprites/hammer_anim/hammer7.png" id="18_clmow"]
+[ext_resource type="Texture2D" uid="uid://brysssop4xh3d" path="res://Sprites/Projectile_sprites/hammer_anim/hammer8.png" id="19_x3dgf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d5ub8"]
 animations = [{
@@ -71,6 +79,41 @@ radius = 7.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3nncb"]
 size = Vector2(15, 13)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdvah"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_nxkb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_74odk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_daimq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_kxh7k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_txtgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_64xfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_clmow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_x3dgf")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_edww6"]
+radius = 44.0454
+
 [node name="Iron_Shell" type="CharacterBody2D"]
 z_index = 4
 collision_mask = 17
@@ -97,6 +140,22 @@ shape = SubResource("RectangleShape2D_3nncb")
 [node name="DamageTick" type="Timer" parent="."]
 autostart = true
 
+[node name="Hammer" type="Node2D" parent="."]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hammer"]
+sprite_frames = SubResource("SpriteFrames_gdvah")
+frame = 7
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="Hammer"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hammer/Area2D"]
+shape = SubResource("CircleShape2D_edww6")
+
 [connection signal="body_entered" from="Hurt Box" to="." method="_on_hurt_box_entered"]
 [connection signal="body_exited" from="Hurt Box" to="." method="_on_hurt_box_exited"]
 [connection signal="timeout" from="DamageTick" to="." method="_on_damage_tick"]
+[connection signal="animation_finished" from="Hammer/AnimatedSprite2D" to="." method="_o_on_hammer_animation_finished"]

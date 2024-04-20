@@ -59,7 +59,8 @@ func die():
 		t = "IRON"
 	else:  # 10% 9
 		t = "GOLD"
-	
+	# TESTING
+	t = "GOLD"
 	loot.set_type(t);
 	print(loot.type);
 	queue_free()
@@ -78,11 +79,17 @@ func _on_hurtbox_entered(body):
 		body.hurt()
 
 func damage(body):
-	if !body.landed:
+	if body!= null && !body.landed:
 		var bounce_dir  = Vector2(body.position - position).normalized()
 		print(bounce_dir)
 		velocity += bounce_dir *500
 		move_and_slide()
+		health -= 1
+		status = state.DEATH if (health <= 0) else state.HURT
+		$AnimatedSprite2D.animation = "hurt"
+		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.play()
+	else:
 		health -= 1
 		status = state.DEATH if (health <= 0) else state.HURT
 		$AnimatedSprite2D.animation = "hurt"

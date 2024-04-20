@@ -25,7 +25,8 @@ enum dir {LEFT = 0,RIGHT = 2,UP = 4,DOWN = 8}
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction : Vector2
 
-
+var hammer_unlocked : bool = false
+var shield_unlocked : bool = false
 signal shoot
 
 @export var push_force  = 1000
@@ -79,6 +80,10 @@ func _physics_process(delta):
 		# Fire Weapon
 		if Input.is_action_just_pressed("Fire"):
 			fire()
+		if Input.is_action_just_pressed("Use Hammer") && hammer_unlocked == true:
+			hammer()
+		if Input.is_action_just_pressed("Use Shield") && shield_unlocked == true:
+			shield()
 		# Calculate Physics
 		move_and_slide()
 		
@@ -163,7 +168,17 @@ func pickup(type):
 			pass
 func fire():
 	emit_signal("shoot")
-
+func hammer():
+	print("using hammer!")
+	$Hammer.visible = true
+	$Hammer/AnimatedSprite2D.play()
+	var pals = $Hammer/Area2D.get_overlapping_bodies()
+	print(pals)
+	for x in pals:
+		if x.has_method("damage"):
+			x.damage(null)
+func shield():
+	pass
 func game_over():
 	alive = false
 	visible = false
@@ -197,3 +212,8 @@ func _on_damage_tick():
 	coal_count -= damage_over_time
 	#take_damage()
 	
+
+
+func _o_on_hammer_animation_finished():
+	$Hammer.visible = false
+	pass # Replace with function body.

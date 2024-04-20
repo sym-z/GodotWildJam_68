@@ -2,10 +2,14 @@ extends Node2D
 var bullet_scene = preload("res://Scenes/projectile.tscn")
 var screen_bullets = []
 var projectile_speed : float = 200.0
+
+var total_enemies : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Camera2D.position = $"Rooms/Room 1/Cam Marker".position
+	
 	var enemies = $Enemies.get_children()
+	total_enemies = enemies.size()
 	for x in enemies:
 		if x.has_method("damage"):
 			x.player = $Iron_Shell;
@@ -13,6 +17,23 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if $"Camera2D/Crafting Menu".visible == true:
+		$"Hud/Hud Background".frame = 3
+	else:
+		#TODO: MATCH WEAPON UNLOCKS
+		if $Iron_Shell.hammer_unlocked:
+			$"Hud/Hud Background".frame = 1
+		elif $Iron_Shell.shield_unlocked:
+			$"Hud/Hud Background".frame = 2
+		else:
+			$"Hud/Hud Background".frame = 0
+	total_enemies = 0
+	var enemies = $Enemies.get_children()
+	for x in enemies:
+		if x.has_method("damage"):
+			total_enemies += 1
+	if total_enemies == 0:
+		print("ALL ENEMIES DEFEATED")
 	# Change the frames to be the correct number for my coal, iron, gold, and copper
 	$"Hud/Numbers/Coal Count/Coal Ten".frame = floor($Iron_Shell.coal_count / 10)
 	$"Hud/Numbers/Coal Count/Coal One".frame = $Iron_Shell.coal_count % 10

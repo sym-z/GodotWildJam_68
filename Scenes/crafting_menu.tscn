@@ -1,8 +1,42 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0o7phldvmsay"]
+[gd_scene load_steps=9 format=3 uid="uid://c0o7phldvmsay"]
 
 [ext_resource type="Texture2D" uid="uid://mo1bc3xml8o2" path="res://Sprites/crafting_menu/shell_menu.png" id="1_3nq1g"]
 [ext_resource type="Script" path="res://Scripts/crafting_menu.gd" id="1_cvyto"]
 [ext_resource type="PackedScene" uid="uid://dob61pdp1lg86" path="res://Scenes/number.tscn" id="2_8ka75"]
+[ext_resource type="Texture2D" uid="uid://u2u2nswli654" path="res://Sprites/crafting_menu/sold_out.png" id="2_pvyiu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ucmvi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pvyiu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0sosi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pvyiu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g2yrt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pvyiu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n2lss"]
 animations = [{
@@ -17,6 +51,26 @@ animations = [{
 
 [node name="Crafting Menu" type="Node2D"]
 script = ExtResource("1_cvyto")
+
+[node name="Sold Out Signs" type="Node2D" parent="."]
+
+[node name="Copper" type="AnimatedSprite2D" parent="Sold Out Signs"]
+visible = false
+z_index = 6
+position = Vector2(-118, -59)
+sprite_frames = SubResource("SpriteFrames_ucmvi")
+
+[node name="Gold" type="AnimatedSprite2D" parent="Sold Out Signs"]
+visible = false
+z_index = 6
+position = Vector2(-67, -58)
+sprite_frames = SubResource("SpriteFrames_0sosi")
+
+[node name="Iron" type="AnimatedSprite2D" parent="Sold Out Signs"]
+visible = false
+z_index = 6
+position = Vector2(-15, -59)
+sprite_frames = SubResource("SpriteFrames_g2yrt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 5
