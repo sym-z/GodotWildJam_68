@@ -57,6 +57,7 @@ func _ready():
 
 func _process(delta):
 	if alive:
+		print($Sprite.animation)
 		var peeps = $"Hurt Box".get_overlapping_bodies()
 		var peep_amt : int = 0
 		for peep in peeps:
@@ -105,11 +106,18 @@ func look():
 		# 2. Set the facing variable
 		if velocity.y: #Works even if it is negative
 			# TODO: ADD IN CORRECT FRAME NUMBER
-			$Sprite.animation = "walk_down" if (velocity.y > 0) else "walk_up"
+			if $Sprite.animation == "up_hurt" || $Sprite.animation == "down_hurt":
+				$Sprite.animation = "down_hurt" if (velocity.y > 0) else "up_hurt"
+				pass
+			else:
+				$Sprite.animation = "walk_down" if (velocity.y > 0) else "walk_up"
 			facing = dir.DOWN if (velocity.y > 0) else dir.UP
 		# Horizontal Movement
 		elif velocity.x:
-			$Sprite.animation = "walk_h"
+			if $Sprite.animation == "h_hurt" :
+				$Sprite.animation = "h_hurt"
+			else:
+				$Sprite.animation = "walk_h"
 			$Sprite.flip_h = true if (velocity.x < 0) else false
 			facing = dir.LEFT if (velocity.x < 0) else dir.RIGHT
 		# Sanity Check
@@ -117,6 +125,7 @@ func look():
 			# Shouldn't be possible because of direction check
 			print("Error in movement_input() function when determining direction")
 			pass
+		
 	# TODO: Idle Animation? Idle State?
 	else:
 		$Sprite.pause()
@@ -140,27 +149,30 @@ func craft():
 		else:
 			$"../Camera2D/Crafting Menu".visible = false
 func pickup(type):
-	if type == "COAL":
-		pass
+
 	match type:
 		"COAL":
 			print("coal get!");
 			if coal_count < max_hp:
+				$Pickup.play()
 				coal_count += 1
 				print(coal_count);
 				pass
 		"GOLD":
 			print("gold get!");
+			$Pickup.play()
 			gold_count += 1
 			print(gold_count);
 			pass
 		"IRON":
 			print("iron get!");
+			$Pickup.play()
 			iron_count += 1
 			print(iron_count);
 			pass
 		"COPPER":
 			print("copper get!");
+			$Pickup.play()
 			copper_count += 1
 			print(copper_count);
 			pass
@@ -168,11 +180,13 @@ func pickup(type):
 			print("ERROR: IN pickup() ON MAIN_CHARACTER: TYPE NOT SET CORRECTLY")
 			pass
 func fire():
+	$"Shoot Sound".play()
 	emit_signal("shoot")
 func hammer():
 	print("using hammer!")
 	$Hammer.visible = true
 	$Hammer/AnimatedSprite2D.play()
+	$"Hammer Sound".play()
 	var pals = $Hammer/Area2D.get_overlapping_bodies()
 	print(pals)
 	for x in pals:
@@ -182,24 +196,54 @@ func shield():
 	pass
 func game_over():
 	alive = false
-	visible = false
-	# TODO: CHANGE TO GAME OVER SCENE
-	get_tree().change_scene_to_file("res://Scenes/ending_screen.tscn")
-	print("Dead")
+	$"Death Sting".play()
+	match $Sprite.animation:
+		"down_hurt":
+			$Sprite.animation = "down_death"
+			$Sprite.play()
+			pass
+		"h_hurt":
+			$Sprite.animation = "h_death"
+			$Sprite.play()
+			pass
+		"up_hurt":
+			$Sprite.animation = "up_death"
+			$Sprite.play()
+			pass
+		"walk_down":
+			$Sprite.animation = "down_death"
+			$Sprite.play()
+			pass
+		"walk_h":
+			$Sprite.animation = "h_death"
+			$Sprite.play()
+			pass
+		"walk_up":
+			$Sprite.animation = "up_death"
+			$Sprite.play()
+			pass
+	#visible = false
+	## TODO: CHANGE TO GAME OVER SCENE
+	#get_tree().change_scene_to_file("res://Scenes/ending_screen.tscn")
+	#print("Dead")
 	
 func take_damage():
 	coal_count -= 1
+	$"Hurt Sound".play()
 	if $Sprite.animation == "walk_down":
+		print("HURT DOWN")
 		$Sprite.animation = "down_hurt"
 		$Sprite.play()
 		
 		pass
 	if $Sprite.animation == "walk_h":
 		$Sprite.animation = "h_hurt"
+		print("HURT H")
 		$Sprite.play()
 		pass
 	if $Sprite.animation == "walk_up":
 		$Sprite.animation = "up_hurt"
+		print("HURT up")
 		$Sprite.play()
 		pass
 
@@ -225,20 +269,21 @@ func _on_damage_tick():
 	#print("Health is now ", coal_count)
 	coal_count -= damage_over_time
 	#take_damage()
-	if damage_over_time != 0:
-		if $Sprite.animation == "walk_down":
-			$Sprite.animation = "down_hurt"
-			$Sprite.play()
-			
-			pass
-		if $Sprite.animation == "walk_h":
-			$Sprite.animation = "h_hurt"
-			$Sprite.play()
-			pass
-		if $Sprite.animation == "walk_up":
-			$Sprite.animation = "up_hurt"
-			$Sprite.play()
-			pass
+	if damage_over_time != 0 && alive:
+		$"Hurt Sound".play()
+		#if $Sprite.animation == "walk_down":
+			#$Sprite.animation = "down_hurt"
+			#$Sprite.play()
+			#
+			#pass
+		#if $Sprite.animation == "walk_h":
+			#$Sprite.animation = "h_hurt"
+			#$Sprite.play()
+			#pass
+		#if $Sprite.animation == "walk_up":
+			#$Sprite.animation = "up_hurt"
+			#$Sprite.play()
+			#pass
 	
 
 
@@ -255,4 +300,28 @@ func _on_sprite_animation_finished():
 			$Sprite.animation = "walk_down"
 		"h_hurt":
 			$Sprite.animation = "walk_h"
+		"up_death":
+			visible = false
+			# TODO: CHANGE TO GAME OVER SCENE
+
+			print("Dead")
+			pass
+		"h_death":
+			visible = false
+			# TODO: CHANGE TO GAME OVER SCENE
+
+			print("Dead")
+			pass
+		"down_death":
+			visible = false
+			# TODO: CHANGE TO GAME OVER SCENE
+
+			print("Dead")
+			pass
+		
+	pass # Replace with function body.
+
+
+func _on_death_sting_finished():
+	get_tree().change_scene_to_file("res://Scenes/ending_screen.tscn")
 	pass # Replace with function body.

@@ -68,7 +68,7 @@ position = Vector2(158, -257)
 position = Vector2(-109, 202)
 
 [node name="Bot" parent="Enemies" instance=ExtResource("5_44mmy")]
-position = Vector2(240, 61)
+position = Vector2(440, 66)
 
 [node name="Bot2" parent="Enemies" instance=ExtResource("5_44mmy")]
 position = Vector2(-335, 331)
@@ -842,5 +842,8 @@ position = Vector2(160, 144)
 visible = false
 z_index = 5
 position = Vector2(0, -24)
+
+[node name="Boss Spawn Point" type="Marker2D" parent="."]
+position = Vector2(160, 121)
 
 [connection signal="shoot" from="Iron_Shell" to="." method="_on_shoot"]

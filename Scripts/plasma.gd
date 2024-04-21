@@ -78,6 +78,7 @@ func _on_hurtbox_entered(body):
 
 func damage(body):
 	if body != null && !body.landed:
+		$"Death Noise".play()
 		var bounce_dir  = Vector2(body.position - position).normalized()
 		print(bounce_dir)
 		# Push the enemy in the opposite direction of the displacement vector
@@ -89,20 +90,17 @@ func damage(body):
 		$AnimatedSprite2D.stop()
 		$AnimatedSprite2D.play()
 	else:
+		$"Death Noise".play()
 		health -= 1
 		status = state.DEATH if (health <= 0) else state.HURT
 		$AnimatedSprite2D.animation = "hurt"
 		$AnimatedSprite2D.stop()
 		$AnimatedSprite2D.play()
 
-func _on_2d_animation_changed():
-	if $AnimatedSprite2D.animation == "hurt":
-		$AnimatedSprite2D/Timer.start()
-		# If they just died, remove their ability to hurt char/take damage, or play death animation.
-
 
 
 func _on_timer_timeout():
+	print("PLASMA HEALTH", health)
 	if health <= 0:
 		status = state.DEATH
 		die()
@@ -111,3 +109,11 @@ func _on_timer_timeout():
 		status = state.PATROL
 		$AnimatedSprite2D.play()
 
+
+
+func _on_animated_sprite_2d_animation_changed():
+		print("PLASMA HEALTH", health)
+		if $AnimatedSprite2D.animation == "hurt":
+			$AnimatedSprite2D/Timer.start()
+			# If they just died, remove their ability to hurt char/take damage, or play death animation.
+		pass # Replace with function body.

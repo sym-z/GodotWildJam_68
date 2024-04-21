@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4geafs820qx5"]
+[gd_scene load_steps=10 format=3 uid="uid://b4geafs820qx5"]
 
 [ext_resource type="Script" path="res://Scripts/bot.gd" id="1_7eqj4"]
 [ext_resource type="Texture2D" uid="uid://it6c4x38sr5d" path="res://Sprites/bot animations/bot_beta1.png" id="1_rn6sp"]
 [ext_resource type="Texture2D" uid="uid://80kwxv7apk3q" path="res://Sprites/bot animations/bot_beta2.png" id="2_7cfiu"]
 [ext_resource type="Texture2D" uid="uid://d1b5hwtywkhj3" path="res://Sprites/bot animations/bot_beta_hurt1.png" id="4_kkoc1"]
 [ext_resource type="Texture2D" uid="uid://debymdpldeb62" path="res://Sprites/bot animations/bot_beta_hurt2.png" id="5_2ojxt"]
+[ext_resource type="AudioStream" uid="uid://bkxk82lo3jo6f" path="res://audio/enemy_death.mp3" id="6_p3niw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3mu8c"]
 animations = [{
@@ -79,6 +80,9 @@ position = Vector2(12, 2)
 
 [node name="Marker2D3" type="Marker2D" parent="Drop Locations"]
 position = Vector2(-1, -7)
+
+[node name="Death Noise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_p3niw")
 
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_2d_animation_changed"]
 [connection signal="timeout" from="AnimatedSprite2D/Timer" to="." method="_on_timer_timeout"]

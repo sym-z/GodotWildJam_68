@@ -41,6 +41,7 @@ func follow(delta):
 
 func die():
 	# TODO: Play death animation
+	
 	$AnimatedSprite2D.visible = false
 	var dad = get_parent();
 	var loot = drop.instantiate()
@@ -75,11 +76,13 @@ func _physics_process(delta):
 
 func _on_hurtbox_entered(body):
 	if body.has_method("hurt"):
+		
 		damage(body)
 		body.hurt()
 
 func damage(body):
 	if body!= null && !body.landed:
+		$"Death Noise".play()
 		var bounce_dir  = Vector2(body.position - position).normalized()
 		print(bounce_dir)
 		velocity += bounce_dir *500
@@ -90,6 +93,7 @@ func damage(body):
 		$AnimatedSprite2D.stop()
 		$AnimatedSprite2D.play()
 	else:
+		$"Death Noise".play()
 		health -= 1
 		status = state.DEATH if (health <= 0) else state.HURT
 		$AnimatedSprite2D.animation = "hurt"

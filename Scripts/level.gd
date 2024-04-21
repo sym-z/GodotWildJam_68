@@ -1,8 +1,9 @@
 extends Node2D
 var bullet_scene = preload("res://Scenes/projectile.tscn")
+var boss_scene = preload("res://Scenes/boss.tscn")
 var screen_bullets = []
 var projectile_speed : float = 200.0
-
+var pre_boss : bool = true
 var total_enemies : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,8 +33,15 @@ func _process(delta):
 	for x in enemies:
 		if x.has_method("damage"):
 			total_enemies += 1
-	if total_enemies == 0:
+	if total_enemies == 0 && pre_boss == true:
+		pre_boss = false;
 		print("ALL ENEMIES DEFEATED")
+		# Spawn Boss
+		var boss = boss_scene.instantiate()
+		boss.player = $Iron_Shell
+		add_child(boss)
+		boss.global_position = $"Boss Spawn Point".global_position
+		
 	# Change the frames to be the correct number for my coal, iron, gold, and copper
 	$"Hud/Numbers/Coal Count/Coal Ten".frame = floor($Iron_Shell.coal_count / 10)
 	$"Hud/Numbers/Coal Count/Coal One".frame = $Iron_Shell.coal_count % 10

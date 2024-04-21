@@ -86,7 +86,12 @@ func buy():
 					$"Sold Out Signs/Copper".visible = true
 					pass
 				# Upgrade speed
+				$"Buy Sound".play()
 				player.walk_speed += 1500.0
+			else:
+				$"Error Sound".play()
+		else:
+			$"Error Sound".play()
 	# Buy Gold Upgrade
 	if Input.is_action_just_pressed("Craft Op 2"):
 		curr_gold = player.gold_count
@@ -112,11 +117,16 @@ func buy():
 					$"Sold Out Signs/Gold".visible = true
 					pass
 				# Upgrade Weapon
+				$"Buy Sound".play()
 				if gold_level == 1:
 					player.hammer_unlocked = true
 				elif gold_level == 2:
 					player.shield_unlocked = true
 				# TODO: SET PLAYER BOOL HERE TO USE NEW WEAPON
+			else:
+				$"Error Sound".play()
+		else:
+			$"Error Sound".play()
 		pass
 	# Buy Iron Upgrade
 	if Input.is_action_just_pressed("Craft Op 3"):
@@ -142,6 +152,11 @@ func buy():
 					$"Sold Out Signs/Iron".visible = true
 					pass
 				# Upgrade max health
+				$"Buy Sound".play()
 				player.max_hp += 1
 				# Give the player full health
 				player.coal_count = player.max_hp
+			else:
+				$"Error Sound".play()
+		else:
+			$"Error Sound".play()

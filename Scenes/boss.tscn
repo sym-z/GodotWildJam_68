@@ -1,0 +1,144 @@
+[gd_scene load_steps=20 format=3 uid="uid://cvkkbair38bwd"]
+
+[ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_ln0gg"]
+[ext_resource type="Texture2D" uid="uid://kgu53c17xbde" path="res://Sprites/boss_anims/boss_damaged1.png" id="2_7fwkc"]
+[ext_resource type="Texture2D" uid="uid://djkkffbfihdhy" path="res://Sprites/boss_anims/boss_damaged2.png" id="3_61n7q"]
+[ext_resource type="Texture2D" uid="uid://b6nsm0amj1ema" path="res://Sprites/boss_anims/boss_damaged3.png" id="4_rc3h6"]
+[ext_resource type="Texture2D" uid="uid://25ox7bapnqsn" path="res://Sprites/boss_anims/boss_death1.png" id="5_jv4ra"]
+[ext_resource type="Texture2D" uid="uid://6vlyarapihas" path="res://Sprites/boss_anims/boss_death2.png" id="6_5d0qm"]
+[ext_resource type="Texture2D" uid="uid://bl1rrbcdshuej" path="res://Sprites/boss_anims/boss_death3.png" id="7_xv5ei"]
+[ext_resource type="Texture2D" uid="uid://bmt4qmapjhph0" path="res://Sprites/boss_anims/boss1.png" id="8_20hcd"]
+[ext_resource type="Texture2D" uid="uid://deol5l6kl8egy" path="res://Sprites/boss_anims/boss2.png" id="9_rf31r"]
+[ext_resource type="Texture2D" uid="uid://c3v73rnxwphm8" path="res://Sprites/boss_anims/boss3.png" id="10_5r5qh"]
+[ext_resource type="Texture2D" uid="uid://bb6uaft18ygj1" path="res://Sprites/boss_anims/boss_hurt1.png" id="11_v5oax"]
+[ext_resource type="Texture2D" uid="uid://cq36kk8f8sl7x" path="res://Sprites/boss_anims/boss_hurt2.png" id="12_3cyxm"]
+[ext_resource type="Texture2D" uid="uid://pur7pic3yomp" path="res://Sprites/boss_anims/boss_hurt3.png" id="13_ycc8l"]
+[ext_resource type="Texture2D" uid="uid://db71sotclofpy" path="res://Sprites/boss_anims/boss_hurt4.png" id="14_qsm8u"]
+[ext_resource type="AudioStream" uid="uid://c57mpssquwfmd" path="res://audio/win_sting.mp3" id="16_qnydr"]
+[ext_resource type="AudioStream" uid="uid://bkxk82lo3jo6f" path="res://audio/enemy_death.mp3" id="16_vpjl0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubok1"]
+size = Vector2(20.0658, 19.0591)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhty0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7fwkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_61n7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rc3h6")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jv4ra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5d0qm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xv5ei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jv4ra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5d0qm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xv5ei")
+}],
+"loop": false,
+"name": &"death",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_20hcd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rf31r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5r5qh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_v5oax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3cyxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ycc8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qsm8u")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4maxk"]
+size = Vector2(47, 46)
+
+[node name="Boss" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 150
+floor_stop_on_slope = false
+script = ExtResource("1_ln0gg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(3, -3)
+rotation = -3.14159
+scale = Vector2(2.39214, -2.41354)
+shape = SubResource("RectangleShape2D_ubok1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fhty0")
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D"]
+one_shot = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+z_index = 1
+position = Vector2(2.5, -3)
+shape = SubResource("RectangleShape2D_4maxk")
+
+[node name="Drop Locations" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Drop Locations"]
+position = Vector2(-28, 14)
+
+[node name="Marker2D2" type="Marker2D" parent="Drop Locations"]
+position = Vector2(-2, 29)
+
+[node name="Marker2D3" type="Marker2D" parent="Drop Locations"]
+position = Vector2(31, 16)
+
+[node name="Death Noise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_vpjl0")
+
+[node name="Defeat Noise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_qnydr")
+
+[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_2d_animation_changed"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_2d_animation_finished"]
+[connection signal="timeout" from="AnimatedSprite2D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_entered"]
+[connection signal="finished" from="Defeat Noise" to="." method="_on_defeat_noise_finished"]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0o7phldvmsay"]
+[gd_scene load_steps=11 format=3 uid="uid://c0o7phldvmsay"]
 
 [ext_resource type="Texture2D" uid="uid://mo1bc3xml8o2" path="res://Sprites/crafting_menu/shell_menu.png" id="1_3nq1g"]
 [ext_resource type="Script" path="res://Scripts/crafting_menu.gd" id="1_cvyto"]
 [ext_resource type="PackedScene" uid="uid://dob61pdp1lg86" path="res://Scenes/number.tscn" id="2_8ka75"]
 [ext_resource type="Texture2D" uid="uid://u2u2nswli654" path="res://Sprites/crafting_menu/sold_out.png" id="2_pvyiu"]
+[ext_resource type="AudioStream" uid="uid://cfs5yliefqlh7" path="res://audio/pickup.mp3" id="5_aphe1"]
+[ext_resource type="AudioStream" uid="uid://bdbd3q88ugyf2" path="res://audio/turt_hurt.mp3" id="6_wxkne"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ucmvi"]
 animations = [{
@@ -105,3 +107,9 @@ position = Vector2(144, 45)
 
 [node name="Health Current" parent="Numbers" instance=ExtResource("2_8ka75")]
 position = Vector2(127, 40)
+
+[node name="Buy Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_aphe1")
+
+[node name="Error Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_wxkne")

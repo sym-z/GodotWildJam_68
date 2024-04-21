@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dovxa7so3sf35"]
+
+[ext_resource type="Script" path="res://Scripts/Win Screen.gd" id="1_01t8r"]
+[ext_resource type="Texture2D" uid="uid://cs0xfy6ngeai" path="res://Sprites/win_screen.png" id="2_laem4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yreym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_laem4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Win Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_01t8r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(160, 144)
+sprite_frames = SubResource("SpriteFrames_yreym")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 114.0
+offset_right = 207.0
+offset_bottom = 180.001
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play Again?"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
