@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_84as6"]
 [ext_resource type="Texture2D" uid="uid://tg03w03nnodu" path="res://Sprites/main_menu.png" id="2_g8ite"]
-[ext_resource type="FontFile" uid="uid://vek5gi2gey8i" path="res://OpenDyslexicAltNerdFontPropo-Regular.otf" id="3_canj6"]
+[ext_resource type="FontFile" uid="uid://f251wmjonl3y" path="res://OpenDyslexicMono-Regular.otf" id="3_nglws"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tials"]
 animations = [{
@@ -16,16 +16,16 @@ animations = [{
 }]
 
 [sub_resource type="Theme" id="Theme_0hbjx"]
-default_font = ExtResource("3_canj6")
+default_font = ExtResource("3_nglws")
 
 [sub_resource type="Theme" id="Theme_iudc6"]
-default_font = ExtResource("3_canj6")
+default_font = ExtResource("3_nglws")
 
 [sub_resource type="Theme" id="Theme_5ky76"]
-default_font = ExtResource("3_canj6")
+default_font = ExtResource("3_nglws")
 
 [sub_resource type="Theme" id="Theme_boxa3"]
-default_font = ExtResource("3_canj6")
+default_font = ExtResource("3_nglws")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -42,10 +42,10 @@ sprite_frames = SubResource("SpriteFrames_tials")
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 2
-offset_left = 18.0
-offset_top = 30.0
-offset_right = 88.0
-offset_bottom = 66.0
+offset_left = 21.0
+offset_top = 28.0
+offset_right = 91.0
+offset_bottom = 64.0
 theme = SubResource("Theme_0hbjx")
 theme_override_colors/font_color = Color(1, 0.870588, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0.647059, 1)
@@ -55,10 +55,10 @@ text = "PLAY"
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 2
-offset_left = 213.0
-offset_top = 31.0
-offset_right = 283.0
-offset_bottom = 67.0
+offset_left = 218.0
+offset_top = 29.0
+offset_right = 288.0
+offset_bottom = 65.0
 theme = SubResource("Theme_iudc6")
 theme_override_colors/font_color = Color(1, 0.870588, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0.647059, 1)
@@ -68,10 +68,10 @@ text = "QUIT"
 
 [node name="How To Play" type="Button" parent="."]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 33.0
-offset_right = 226.0
-offset_bottom = 69.0
+offset_left = 97.0
+offset_top = 32.0
+offset_right = 234.0
+offset_bottom = 68.0
 scale = Vector2(0.845, 0.845)
 theme = SubResource("Theme_5ky76")
 theme_override_colors/font_color = Color(1, 0.870588, 0, 1)
@@ -82,9 +82,9 @@ text = "HOW TO PLAY"
 
 [node name="Credits" type="Button" parent="."]
 layout_mode = 0
-offset_left = 131.0
+offset_left = 126.0
 offset_top = 260.0
-offset_right = 212.0
+offset_right = 217.0
 offset_bottom = 296.0
 scale = Vector2(0.735, 0.735)
 theme = SubResource("Theme_boxa3")

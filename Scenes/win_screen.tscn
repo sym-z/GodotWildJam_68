@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Win Screen.gd" id="1_01t8r"]
 [ext_resource type="Texture2D" uid="uid://cs0xfy6ngeai" path="res://Sprites/win_screen.png" id="2_laem4"]
-[ext_resource type="FontFile" uid="uid://vek5gi2gey8i" path="res://OpenDyslexicAltNerdFontPropo-Regular.otf" id="3_18q5b"]
+[ext_resource type="FontFile" uid="uid://f251wmjonl3y" path="res://OpenDyslexicMono-Regular.otf" id="3_ldymr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yreym"]
 animations = [{
@@ -16,10 +16,10 @@ animations = [{
 }]
 
 [sub_resource type="Theme" id="Theme_aatms"]
-default_font = ExtResource("3_18q5b")
+default_font = ExtResource("3_ldymr")
 
 [sub_resource type="Theme" id="Theme_hcn1e"]
-default_font = ExtResource("3_18q5b")
+default_font = ExtResource("3_ldymr")
 
 [node name="Win Screen" type="Control"]
 layout_mode = 3
@@ -36,9 +36,9 @@ sprite_frames = SubResource("SpriteFrames_yreym")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 110.0
+offset_left = 103.0
 offset_top = 118.0
-offset_right = 230.0
+offset_right = 240.0
 offset_bottom = 194.0
 scale = Vector2(0.84, 0.84)
 

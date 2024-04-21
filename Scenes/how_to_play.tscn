@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://1xgyo6v67kwd" path="res://Sprites/how_to_play.png" id="1_8p2d4"]
 [ext_resource type="Script" path="res://Scripts/how_to_play.gd" id="1_gm7u2"]
-[ext_resource type="FontFile" uid="uid://vek5gi2gey8i" path="res://OpenDyslexicAltNerdFontPropo-Regular.otf" id="2_3o1fj"]
+[ext_resource type="FontFile" uid="uid://f251wmjonl3y" path="res://OpenDyslexicMono-Regular.otf" id="3_hpluh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jqkxr"]
 animations = [{
@@ -16,7 +16,7 @@ animations = [{
 }]
 
 [sub_resource type="Theme" id="Theme_irhn2"]
-default_font = ExtResource("2_3o1fj")
+default_font = ExtResource("3_hpluh")
 
 [node name="How To Play" type="Control"]
 layout_mode = 3
