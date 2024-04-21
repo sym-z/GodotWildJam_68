@@ -1,11 +1,11 @@
 extends CharacterBody2D
-@export var health   = 3
+@export var health   = 10
 var bullet = preload("res://Scenes/projectile.tscn")
 var drop = preload("res://Scenes/collectible.tscn")
 
-
+var sees_player : bool = false
 var locs = []
-const SPEED = 10.0
+const SPEED = 20.0
 @export var player : CharacterBody2D
 
 # To handle state machine
@@ -27,6 +27,9 @@ func _ready():
 func follow(delta):
 	var target_position = player.position
 	if(position.distance_to(target_position) < 150):
+		if sees_player == false:
+			$"Boss Sting".play()
+		sees_player = true
 		status = state.TARGET
 		if abs(target_position.y - position.y) >= abs(target_position.x - position.x):
 			velocity = Vector2(0, target_position.y - position.y).normalized() * 5000 * delta

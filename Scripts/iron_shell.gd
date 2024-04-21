@@ -28,6 +28,9 @@ var direction : Vector2
 var hammer_unlocked : bool = false
 var shield_unlocked : bool = false
 
+var hammering = false
+var can_hammer = true
+
 var is_shielded = false
 var can_shield = true
 signal shoot
@@ -183,20 +186,45 @@ func pickup(type):
 			print("ERROR: IN pickup() ON MAIN_CHARACTER: TYPE NOT SET CORRECTLY")
 			pass
 func fire():
-	$"Shoot Sound".play()
-	emit_signal("shoot")
+	if !is_shielded:
+		$"Shoot Sound".play()
+		emit_signal("shoot")
 func hammer():
-	print("using hammer!")
-	$Hammer.visible = true
-	$Hammer/AnimatedSprite2D.play()
-	$"Hammer Sound".play()
-	var pals = $Hammer/Area2D.get_overlapping_bodies()
-	print(pals)
-	for x in pals:
-		if x.has_method("damage"):
-			x.damage(null)
+	if !is_shielded && can_hammer && !hammering:
+		#print("YO")
+		can_hammer = false
+		hammering = true
+		#print("using hammer!")
+		$Hammer.visible = true
+		$Hammer/AnimatedSprite2D.play()
+		$"Hammer Sound".play()
+		var pals = $Hammer/Area2D.get_overlapping_bodies()
+		#print(pals)
+		
+		
+		for x in pals:
+			print("PAL: ",x)
+			$"RayCast2D".enabled = true
+			if x.has_method("damage"):
+				#$"RayCast2D".set_target_position(x.position)
+				#var body = $"RayCast2D".get_collider()
+				#print(x.position)
+				#if body:
+					#print(body.damage())
+					#print("COLLISION POINT: ", $"RayCast2D".get_collision_point())
+					#print()
+					##print("COLLISION POINT: ", $"Collision Shape/RayCast2D".get_collision_point()- $"Collision Shape/RayCast2D".global_position)
+					##print("TARGET POSITION: ", $"Collision Shape/RayCast2D".target_position)
+					##print("TARGET POSITION: ", x.position - $"Collision Shape/RayCast2D".global_position)
+					##if $"Collision Shape/RayCast2D".get_collision_point() == $"Collision Shape/RayCast2D".target_position:
+						###print (body)
+						##x.damage(null)
+				#if $RayCast2D.is_colliding():
+				x.damage(null)
+	else:
+		$"Hurt Sound".play()
 func shield():
-	if can_shield:
+	if can_shield && ! is_shielded:
 		can_shield = false
 		is_shielded = true
 		$Shield.visible = true
@@ -303,6 +331,8 @@ func _on_damage_tick():
 
 func _o_on_hammer_animation_finished():
 	$Hammer.visible = false
+	$"Hammer/AnimatedSprite2D/Cooldown Hammer".start()
+	hammering = false;
 	pass # Replace with function body.
 
 
@@ -350,4 +380,9 @@ func _on_shield_animation_finished():
 
 func _on_cooldown_timeout():
 	can_shield = true
+	pass # Replace with function body.
+
+
+func _on_cooldown_hammer_timeout():
+	can_hammer = true
 	pass # Replace with function body.

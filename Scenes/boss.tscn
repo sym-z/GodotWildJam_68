@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cvkkbair38bwd"]
+[gd_scene load_steps=21 format=3 uid="uid://cvkkbair38bwd"]
 
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_ln0gg"]
 [ext_resource type="Texture2D" uid="uid://kgu53c17xbde" path="res://Sprites/boss_anims/boss_damaged1.png" id="2_7fwkc"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://db71sotclofpy" path="res://Sprites/boss_anims/boss_hurt4.png" id="14_qsm8u"]
 [ext_resource type="AudioStream" uid="uid://c57mpssquwfmd" path="res://audio/win_sting.mp3" id="16_qnydr"]
 [ext_resource type="AudioStream" uid="uid://bkxk82lo3jo6f" path="res://audio/enemy_death.mp3" id="16_vpjl0"]
+[ext_resource type="AudioStream" uid="uid://cqhkuaokkdx0x" path="res://audio/boss_sting.mp3" id="17_om1dq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubok1"]
 size = Vector2(20.0658, 19.0591)
@@ -136,6 +137,9 @@ stream = ExtResource("16_vpjl0")
 
 [node name="Defeat Noise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_qnydr")
+
+[node name="Boss Sting" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_om1dq")
 
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_2d_animation_changed"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_2d_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://6tylrtfk52ed"]
+[gd_scene load_steps=8 format=3 uid="uid://6tylrtfk52ed"]
 
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_84as6"]
 [ext_resource type="Texture2D" uid="uid://tg03w03nnodu" path="res://Sprites/main_menu.png" id="2_g8ite"]
@@ -21,6 +21,9 @@ default_font = ExtResource("3_canj6")
 [sub_resource type="Theme" id="Theme_iudc6"]
 default_font = ExtResource("3_canj6")
 
+[sub_resource type="Theme" id="Theme_5ky76"]
+default_font = ExtResource("3_canj6")
+
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -34,33 +37,33 @@ script = ExtResource("1_84as6")
 position = Vector2(160, 144)
 sprite_frames = SubResource("SpriteFrames_tials")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_left = 216.0
-offset_top = 62.0
-offset_right = 286.0
-offset_bottom = 163.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
 [node name="Play" type="Button" parent="."]
 layout_mode = 2
-offset_left = 41.0
-offset_top = 32.0
-offset_right = 111.0
-offset_bottom = 63.0
+offset_left = 18.0
+offset_top = 30.0
+offset_right = 88.0
+offset_bottom = 66.0
 theme = SubResource("Theme_0hbjx")
 text = "Play"
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 2
-offset_left = 212.0
-offset_top = 33.0
-offset_right = 282.0
-offset_bottom = 64.0
+offset_left = 213.0
+offset_top = 31.0
+offset_right = 283.0
+offset_bottom = 67.0
 theme = SubResource("Theme_iudc6")
 text = "Quit"
 
+[node name="How To Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 31.0
+offset_right = 206.0
+offset_bottom = 67.0
+theme = SubResource("Theme_5ky76")
+text = "How to Play"
+
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="How To Play" to="." method="_on_how_to_play_pressed"]

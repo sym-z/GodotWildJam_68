@@ -841,13 +841,12 @@ hud_mark = NodePath("../../../Room 2/Hud Marker")
 to_mark = NodePath("../../../Room 2/Door Entrance Markers/Room 2 North")
 
 [node name="Enemy Blockers" type="Node2D" parent="."]
-visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Enemy Blockers"]
 position = Vector2(-27, -276)
 scale = Vector2(4.4954, 1.30555)
 collision_layer = 128
-collision_mask = 2
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Blockers/StaticBody2D"]
 position = Vector2(-1.11225, 303.321)
