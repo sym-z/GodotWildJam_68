@@ -5,7 +5,7 @@ var drop = preload("res://Scenes/collectible.tscn")
 
 var sees_player : bool = false
 var locs = []
-const SPEED = 20.0
+const SPEED = 7500.0
 @export var player : CharacterBody2D
 
 # To handle state machine
@@ -32,9 +32,9 @@ func follow(delta):
 		sees_player = true
 		status = state.TARGET
 		if abs(target_position.y - position.y) >= abs(target_position.x - position.x):
-			velocity = Vector2(0, target_position.y - position.y).normalized() * 5000 * delta
+			velocity = Vector2(0, target_position.y - position.y).normalized() * SPEED * delta
 		else:
-			velocity = Vector2(target_position.x - position.x, 0).normalized() * 5000 * delta
+			velocity = Vector2(target_position.x - position.x, 0).normalized() * SPEED * delta
 		#print( target_position.y - position.y)
 		#print(" X",  target_position.x - position.x)
 		#print(target_position.y)

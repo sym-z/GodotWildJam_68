@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsxjigr4ttvwo"]
+
+[ext_resource type="Texture2D" uid="uid://chqdurk0cothc" path="res://Sprites/credits.png" id="1_ekoye"]
+[ext_resource type="Script" path="res://Scripts/credits.gd" id="1_pbfuj"]
+[ext_resource type="FontFile" uid="uid://vek5gi2gey8i" path="res://OpenDyslexicAltNerdFontPropo-Regular.otf" id="2_7w7ra"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44cvl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ekoye")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_4erd8"]
+default_font = ExtResource("2_7w7ra")
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pbfuj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(160, 144)
+sprite_frames = SubResource("SpriteFrames_44cvl")
+
+[node name="Main Menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 14.0
+offset_right = 332.0
+offset_bottom = 50.0
+scale = Vector2(0.785, 0.785)
+theme = SubResource("Theme_4erd8")
+theme_override_colors/font_color = Color(1, 0.870588, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(1, 0.258824, 0, 1)
+theme_override_constants/outline_size = 2
+text = "MAIN MENU"
+
+[connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]

@@ -26,3 +26,10 @@ func _on_how_to_play_pressed():
 	print("hi")
 	get_tree().change_scene_to_file("res://Scenes/how_to_play.tscn")
 	pass # Replace with function body.
+
+
+
+
+func _on_credits_pressed():
+	get_tree().change_scene_to_file("res://Scenes/credits.tscn")
+	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://6tylrtfk52ed"]
+[gd_scene load_steps=9 format=3 uid="uid://6tylrtfk52ed"]
 
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_84as6"]
 [ext_resource type="Texture2D" uid="uid://tg03w03nnodu" path="res://Sprites/main_menu.png" id="2_g8ite"]
@@ -24,6 +24,9 @@ default_font = ExtResource("3_canj6")
 [sub_resource type="Theme" id="Theme_5ky76"]
 default_font = ExtResource("3_canj6")
 
+[sub_resource type="Theme" id="Theme_boxa3"]
+default_font = ExtResource("3_canj6")
+
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -44,7 +47,11 @@ offset_top = 30.0
 offset_right = 88.0
 offset_bottom = 66.0
 theme = SubResource("Theme_0hbjx")
-text = "Play"
+theme_override_colors/font_color = Color(1, 0.870588, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(1, 0.258824, 0, 1)
+theme_override_constants/outline_size = 2
+text = "PLAY"
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 2
@@ -53,17 +60,41 @@ offset_top = 31.0
 offset_right = 283.0
 offset_bottom = 67.0
 theme = SubResource("Theme_iudc6")
-text = "Quit"
+theme_override_colors/font_color = Color(1, 0.870588, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(1, 0.258824, 0, 1)
+theme_override_constants/outline_size = 2
+text = "QUIT"
 
 [node name="How To Play" type="Button" parent="."]
 layout_mode = 0
 offset_left = 96.0
-offset_top = 31.0
-offset_right = 206.0
-offset_bottom = 67.0
+offset_top = 33.0
+offset_right = 226.0
+offset_bottom = 69.0
+scale = Vector2(0.845, 0.845)
 theme = SubResource("Theme_5ky76")
-text = "How to Play"
+theme_override_colors/font_color = Color(1, 0.870588, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(1, 0.258824, 0, 1)
+theme_override_constants/outline_size = 2
+text = "HOW TO PLAY"
+
+[node name="Credits" type="Button" parent="."]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 260.0
+offset_right = 212.0
+offset_bottom = 296.0
+scale = Vector2(0.735, 0.735)
+theme = SubResource("Theme_boxa3")
+theme_override_colors/font_color = Color(1, 0.870588, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.647059, 1)
+theme_override_colors/font_outline_color = Color(1, 0.258824, 0, 1)
+theme_override_constants/outline_size = 2
+text = "CREDITS"
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="How To Play" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
