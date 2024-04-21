@@ -22,10 +22,10 @@ func _process(delta):
 		$"Hud/Hud Background".frame = 3
 	else:
 		#TODO: MATCH WEAPON UNLOCKS
-		if $Iron_Shell.hammer_unlocked:
-			$"Hud/Hud Background".frame = 1
-		elif $Iron_Shell.shield_unlocked:
+		if $Iron_Shell.shield_unlocked:
 			$"Hud/Hud Background".frame = 2
+		elif $Iron_Shell.hammer_unlocked:
+			$"Hud/Hud Background".frame = 1
 		else:
 			$"Hud/Hud Background".frame = 0
 	total_enemies = 0

@@ -27,6 +27,9 @@ var direction : Vector2
 
 var hammer_unlocked : bool = false
 var shield_unlocked : bool = false
+
+var is_shielded = false
+var can_shield = true
 signal shoot
 
 @export var push_force  = 1000
@@ -193,7 +196,15 @@ func hammer():
 		if x.has_method("damage"):
 			x.damage(null)
 func shield():
-	pass
+	if can_shield:
+		can_shield = false
+		is_shielded = true
+		$Shield.visible = true
+		$Shield.play()
+		$"Shield Sound".play()
+		pass
+	else:
+		$"Hurt Sound".play()
 func game_over():
 	alive = false
 	$"Death Sting".play()
@@ -228,34 +239,36 @@ func game_over():
 	#print("Dead")
 	
 func take_damage():
-	coal_count -= 1
-	$"Hurt Sound".play()
-	if $Sprite.animation == "walk_down":
-		print("HURT DOWN")
-		$Sprite.animation = "down_hurt"
-		$Sprite.play()
-		
-		pass
-	if $Sprite.animation == "walk_h":
-		$Sprite.animation = "h_hurt"
-		print("HURT H")
-		$Sprite.play()
-		pass
-	if $Sprite.animation == "walk_up":
-		$Sprite.animation = "up_hurt"
-		print("HURT up")
-		$Sprite.play()
-		pass
+	if !is_shielded:
+		coal_count -= 1
+		$"Hurt Sound".play()
+		if $Sprite.animation == "walk_down":
+			print("HURT DOWN")
+			$Sprite.animation = "down_hurt"
+			$Sprite.play()
+			
+			pass
+		if $Sprite.animation == "walk_h":
+			$Sprite.animation = "h_hurt"
+			print("HURT H")
+			$Sprite.play()
+			pass
+		if $Sprite.animation == "walk_up":
+			$Sprite.animation = "up_hurt"
+			print("HURT up")
+			$Sprite.play()
+			pass
 
 
 func _on_hurt_box_entered(body):
-	if body.has_method("enemy"):
-		$DamageTick.start()
-		# Initial Damage
-		take_damage();
-		#damage_over_time += 1
-		#print(damage_over_time)
-	pass # Replace with function body.
+	if !is_shielded:
+		if body.has_method("enemy"):
+			$DamageTick.start()
+			# Initial Damage
+			take_damage();
+			#damage_over_time += 1
+			#print(damage_over_time)
+		pass # Replace with function body.
 
 
 func _on_hurt_box_exited(body):
@@ -265,25 +278,26 @@ func _on_hurt_box_exited(body):
 
 
 func _on_damage_tick():
-	#print("Hit for ", damage_over_time, " damage");
-	#print("Health is now ", coal_count)
-	coal_count -= damage_over_time
-	#take_damage()
-	if damage_over_time != 0 && alive:
-		$"Hurt Sound".play()
-		#if $Sprite.animation == "walk_down":
-			#$Sprite.animation = "down_hurt"
-			#$Sprite.play()
-			#
-			#pass
-		#if $Sprite.animation == "walk_h":
-			#$Sprite.animation = "h_hurt"
-			#$Sprite.play()
-			#pass
-		#if $Sprite.animation == "walk_up":
-			#$Sprite.animation = "up_hurt"
-			#$Sprite.play()
-			#pass
+	if !is_shielded:
+		#print("Hit for ", damage_over_time, " damage");
+		#print("Health is now ", coal_count)
+		coal_count -= damage_over_time
+		#take_damage()
+		if damage_over_time != 0 && alive:
+			$"Hurt Sound".play()
+			#if $Sprite.animation == "walk_down":
+				#$Sprite.animation = "down_hurt"
+				#$Sprite.play()
+				#
+				#pass
+			#if $Sprite.animation == "walk_h":
+				#$Sprite.animation = "h_hurt"
+				#$Sprite.play()
+				#pass
+			#if $Sprite.animation == "walk_up":
+				#$Sprite.animation = "up_hurt"
+				#$Sprite.play()
+				#pass
 	
 
 
@@ -324,4 +338,16 @@ func _on_sprite_animation_finished():
 
 func _on_death_sting_finished():
 	get_tree().change_scene_to_file("res://Scenes/ending_screen.tscn")
+	pass # Replace with function body.
+
+
+func _on_shield_animation_finished():
+	is_shielded = false
+	$Shield.visible = false
+	$Shield/Cooldown.start()
+	pass # Replace with function body.
+
+
+func _on_cooldown_timeout():
+	can_shield = true
 	pass # Replace with function body.

@@ -8,8 +8,8 @@ var curr_gold : int
 
 # Cost of the upgrades
 var levels_gold = [1,2]
-var levels_iron = [1, 3, 5]
-var levels_copper = [1,3,5]
+var levels_iron = [1, 2, 3]
+var levels_copper = [1,2,3]
 
 # The upgrade level the player starts at.
 var gold_level = 0

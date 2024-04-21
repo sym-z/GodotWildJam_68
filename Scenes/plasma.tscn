@@ -116,13 +116,13 @@ shape = SubResource("RectangleShape2D_4maxk")
 [node name="Drop Locations" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="Drop Locations"]
-position = Vector2(-28, 14)
+position = Vector2(-23, 17)
 
 [node name="Marker2D2" type="Marker2D" parent="Drop Locations"]
-position = Vector2(-2, 29)
+position = Vector2(0, 25)
 
 [node name="Marker2D3" type="Marker2D" parent="Drop Locations"]
-position = Vector2(31, 16)
+position = Vector2(23, 17)
 
 [node name="Death Noise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_rs300")

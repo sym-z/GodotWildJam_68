@@ -60,8 +60,7 @@ func die():
 		t = "IRON"
 	else:  # 10% 9
 		t = "GOLD"
-	# TESTING
-	t = "GOLD"
+	#t = "GOLD"
 	loot.set_type(t);
 	print(loot.type);
 	queue_free()
