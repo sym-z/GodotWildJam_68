@@ -21,7 +21,6 @@ func _process(delta):
 	if $"Camera2D/Crafting Menu".visible == true:
 		$"Hud/Hud Background".frame = 3
 	else:
-		#TODO: MATCH WEAPON UNLOCKS
 		if $Iron_Shell.shield_unlocked:
 			$"Hud/Hud Background".frame = 2
 		elif $Iron_Shell.hammer_unlocked:
@@ -35,7 +34,6 @@ func _process(delta):
 			total_enemies += 1
 	if total_enemies == 0 && pre_boss == true:
 		pre_boss = false;
-		print("ALL ENEMIES DEFEATED")
 		# Spawn Boss
 		var boss = boss_scene.instantiate()
 		boss.player = $Iron_Shell
@@ -58,8 +56,6 @@ func _process(delta):
 	
 
 func _on_shoot():
-	# TODO: FLIP PROJECTILE SPRITE IF FACING OTHER DIRECTIONS
-	# TODO: LIFESPAN
 	var bullet = bullet_scene.instantiate()
 	var dir : Vector2
 	add_child(bullet)
@@ -77,7 +73,6 @@ func _on_shoot():
 	dir += $Iron_Shell.velocity.normalized() 
 	dir.x *= 2
 	bullet.linear_velocity = dir * projectile_speed
-	print(bullet.linear_velocity)
 	screen_bullets.append(bullet)
 
 	

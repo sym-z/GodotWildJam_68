@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_84as6"]
 [ext_resource type="Texture2D" uid="uid://tg03w03nnodu" path="res://Sprites/main_menu.png" id="2_g8ite"]
-[ext_resource type="FontFile" uid="uid://f251wmjonl3y" path="res://OpenDyslexicMono-Regular.otf" id="3_nglws"]
+[ext_resource type="FontFile" uid="uid://dv16m40cr315y" path="res://OpenDyslexic-Bold.otf" id="3_q5wgx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tials"]
 animations = [{
@@ -16,16 +16,16 @@ animations = [{
 }]
 
 [sub_resource type="Theme" id="Theme_0hbjx"]
-default_font = ExtResource("3_nglws")
+default_font = ExtResource("3_q5wgx")
 
 [sub_resource type="Theme" id="Theme_iudc6"]
-default_font = ExtResource("3_nglws")
+default_font = ExtResource("3_q5wgx")
 
 [sub_resource type="Theme" id="Theme_5ky76"]
-default_font = ExtResource("3_nglws")
+default_font = ExtResource("3_q5wgx")
 
 [sub_resource type="Theme" id="Theme_boxa3"]
-default_font = ExtResource("3_nglws")
+default_font = ExtResource("3_q5wgx")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -55,10 +55,11 @@ text = "PLAY"
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 2
-offset_left = 218.0
-offset_top = 29.0
-offset_right = 288.0
-offset_bottom = 65.0
+offset_left = 131.0
+offset_top = 259.0
+offset_right = 201.0
+offset_bottom = 295.0
+scale = Vector2(0.73, 0.73)
 theme = SubResource("Theme_iudc6")
 theme_override_colors/font_color = Color(1, 0.870588, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0.647059, 1)
@@ -82,11 +83,10 @@ text = "HOW TO PLAY"
 
 [node name="Credits" type="Button" parent="."]
 layout_mode = 0
-offset_left = 126.0
-offset_top = 260.0
-offset_right = 217.0
-offset_bottom = 296.0
-scale = Vector2(0.735, 0.735)
+offset_left = 218.0
+offset_top = 29.0
+offset_right = 309.0
+offset_bottom = 65.0
 theme = SubResource("Theme_boxa3")
 theme_override_colors/font_color = Color(1, 0.870588, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0.647059, 1)

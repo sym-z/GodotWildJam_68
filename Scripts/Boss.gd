@@ -21,9 +21,6 @@ func _ready():
 	status = state.PATROL
 	$AnimatedSprite2D.play()
 
-#func _process(delta):
-	#follow()
-
 func follow(delta):
 	var target_position = player.position
 	if(position.distance_to(target_position) < 150):
@@ -35,16 +32,11 @@ func follow(delta):
 			velocity = Vector2(0, target_position.y - position.y).normalized() * SPEED * delta
 		else:
 			velocity = Vector2(target_position.x - position.x, 0).normalized() * SPEED * delta
-		#print( target_position.y - position.y)
-		#print(" X",  target_position.x - position.x)
-		#print(target_position.y)
 	else:
 		status = state.PATROL
 
 func die():
-	# TODO: Play death animation
 	$AnimatedSprite2D.animation = "death"
-	# TODO: WHEN THIS IS DONE GO TO GAME WIN SCREEN
 	$"Defeat Noise".play()
 	$AnimatedSprite2D.play()
 	
@@ -63,7 +55,6 @@ func _on_hurtbox_entered(body):
 		body.hurt()
 
 func damage(body):
-	print("BOSS HEALTH", health)
 	if body != null && !body.landed:
 		$"Death Noise".play()
 		var bounce_dir  = Vector2(body.position - position).normalized()
@@ -86,7 +77,6 @@ func damage(body):
 
 func _on_2d_animation_changed():
 	if $AnimatedSprite2D.animation == "hurt":
-		print("TIMER STARTING")
 		$AnimatedSprite2D/Timer.start()
 		# If they just died, remove their ability to hurt char/take damage, or play death animation.
 
@@ -95,7 +85,6 @@ func _on_2d_animation_changed():
 func _on_timer_timeout():
 	if health <= 0:
 		status = state.DEATH
-		print("BOSS DIE")
 		die()
 	else:
 		$AnimatedSprite2D.animation = "default"
@@ -126,10 +115,7 @@ func _on_2d_animation_finished():
 			t = "GOLD"
 		
 		loot.set_type(t);
-		print(loot.type);
 		queue_free()
-		
-		pass # Replace with function body.
 
 
 
@@ -137,4 +123,3 @@ func _on_2d_animation_finished():
 
 func _on_defeat_noise_finished():
 	get_tree().change_scene_to_file("res://Scenes/win_screen.tscn")
-	pass # Replace with function body.

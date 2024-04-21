@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Ending Screen.gd" id="1_ndbr0"]
 [ext_resource type="Texture2D" uid="uid://wthyig2n7q0j" path="res://Sprites/loss_screen.png" id="2_i6heg"]
-[ext_resource type="FontFile" uid="uid://f251wmjonl3y" path="res://OpenDyslexicMono-Regular.otf" id="3_vt6d2"]
+[ext_resource type="FontFile" uid="uid://dv16m40cr315y" path="res://OpenDyslexic-Bold.otf" id="3_3dtll"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2a0vf"]
 animations = [{
@@ -16,10 +16,10 @@ animations = [{
 }]
 
 [sub_resource type="Theme" id="Theme_76bv2"]
-default_font = ExtResource("3_vt6d2")
+default_font = ExtResource("3_3dtll")
 
 [sub_resource type="Theme" id="Theme_2pup4"]
-default_font = ExtResource("3_vt6d2")
+default_font = ExtResource("3_3dtll")
 
 [node name="Ending Screen" type="Control"]
 layout_mode = 3

@@ -14,16 +14,11 @@ enum state {PATROL, TARGET, ATTACK, HURT, DEATH}
 func enemy():
 	pass
 
-#func drop_loot():
-	
-	
 func _ready():
 	status = state.PATROL
 	$AnimatedSprite2D.play()
 	locs = $"Drop Locations".get_children()
 
-#func _process(delta):
-	#follow()
 
 func follow(delta):
 	var target_position = player.position
@@ -33,15 +28,10 @@ func follow(delta):
 			velocity = Vector2(0, target_position.y - position.y).normalized() * 5000 * delta
 		else:
 			velocity = Vector2(target_position.x - position.x, 0).normalized() * 5000 * delta
-		#print( target_position.y - position.y)
-		#print(" X",  target_position.x - position.x)
-		#print(target_position.y)
 	else:
 		status = state.PATROL
 
-func die():
-	# TODO: Play death animation
-	
+func die():	
 	$AnimatedSprite2D.visible = false
 	var dad = get_parent();
 	var loot = drop.instantiate()
@@ -60,9 +50,7 @@ func die():
 		t = "IRON"
 	else:  # 10% 9
 		t = "GOLD"
-	#t = "GOLD"
 	loot.set_type(t);
-	print(loot.type);
 	queue_free()
 	
 

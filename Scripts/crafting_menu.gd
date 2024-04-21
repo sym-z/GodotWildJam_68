@@ -44,7 +44,6 @@ func _ready():
 	$"Numbers/Speed Current".frame = copper_level
 	$"Numbers/Weapon Current".frame = gold_level
 	$"Numbers/Health Current".frame = iron_level
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,19 +53,13 @@ func _process(delta):
 	if is_open:
 		buy()
 		
-	pass
 
 func buy():
 	# Buy Copper Upgrade
 	if Input.is_action_just_pressed("Craft Op 1"):
-		#print("ATTEMPTING TO BUY 1")
 		curr_copper = player.copper_count
 		# If we arent at the max upgrade
 		if copper_level < level_tot_copper:
-			#print("ATTEMPTING TO BUY 2")
-			# If we have enough copper to buy the upgrade
-			#print("CURR_COPPER:", curr_copper)
-			#print("levels_copper[copper_level -1]: ", levels_copper[copper_level -1])
 			if curr_copper >= levels_copper[copper_level]:
 				# Buy it
 				# Remove funds from this script
@@ -84,7 +77,6 @@ func buy():
 				else:
 					# Show "SOLD OUT"
 					$"Sold Out Signs/Copper".visible = true
-					pass
 				# Upgrade speed
 				$"Buy Sound".play()
 				player.walk_speed += 1500.0
@@ -97,7 +89,6 @@ func buy():
 		curr_gold = player.gold_count
 		# If we arent at the max upgrade
 		if gold_level < level_tot_gold:
-			#print("ATTEMPTING TO BUY 2")
 			# If we have enough gold to buy the upgrade
 			if curr_gold >= levels_gold[gold_level]:
 				# Buy it
@@ -113,21 +104,19 @@ func buy():
 				if gold_level != level_tot_gold:
 					$"Numbers/Gold Cost".frame = levels_gold[gold_level]
 				else:
-					# TODO: Show "SOLD OUT"
+					# Show "SOLD OUT"
 					$"Sold Out Signs/Gold".visible = true
-					pass
 				# Upgrade Weapon
 				$"Buy Sound".play()
 				if gold_level == 1:
 					player.hammer_unlocked = true
 				elif gold_level == 2:
 					player.shield_unlocked = true
-				# TODO: SET PLAYER BOOL HERE TO USE NEW WEAPON
 			else:
 				$"Error Sound".play()
 		else:
 			$"Error Sound".play()
-		pass
+
 	# Buy Iron Upgrade
 	if Input.is_action_just_pressed("Craft Op 3"):
 		curr_iron = player.iron_count
@@ -150,7 +139,6 @@ func buy():
 				else:
 					# Show "SOLD OUT"
 					$"Sold Out Signs/Iron".visible = true
-					pass
 				# Upgrade max health
 				$"Buy Sound".play()
 				player.max_hp += 1

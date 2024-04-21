@@ -21,9 +21,6 @@ func _ready():
 	status = state.PATROL
 	$AnimatedSprite2D.play()
 
-#func _process(delta):
-	#follow()
-
 func follow(delta):
 	var target_position = player.position
 	if(position.distance_to(target_position) < 150):
@@ -32,14 +29,10 @@ func follow(delta):
 			velocity = Vector2(0, target_position.y - position.y).normalized() * 5000 * delta
 		else:
 			velocity = Vector2(target_position.x - position.x, 0).normalized() * 5000 * delta
-		#print( target_position.y - position.y)
-		#print(" X",  target_position.x - position.x)
-		#print(target_position.y)
 	else:
 		status = state.PATROL
 
 func die():
-	# TODO: Play death animation
 	$AnimatedSprite2D.visible = false
 	var dad = get_parent();
 	var loot = drop.instantiate()
@@ -60,7 +53,6 @@ func die():
 		t = "GOLD"
 	
 	loot.set_type(t);
-	print(loot.type);
 	queue_free()
 	
 
@@ -80,7 +72,6 @@ func damage(body):
 	if body != null && !body.landed:
 		$"Death Noise".play()
 		var bounce_dir  = Vector2(body.position - position).normalized()
-		print(bounce_dir)
 		# Push the enemy in the opposite direction of the displacement vector
 		velocity += -bounce_dir * 700
 		move_and_slide()
@@ -116,4 +107,3 @@ func _on_animated_sprite_2d_animation_changed():
 		if $AnimatedSprite2D.animation == "hurt":
 			$AnimatedSprite2D/Timer.start()
 			# If they just died, remove their ability to hurt char/take damage, or play death animation.
-		pass # Replace with function body.
